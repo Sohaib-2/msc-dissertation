@@ -1,0 +1,19 @@
+# Minimal real dependencies for running SCAR (NOT the bloated environment.yaml).
+# The upstream environment.yaml pulls TensorFlow, GFPGAN, facexlib etc. — none needed.
+#
+# On Colab/RunPod, torch + torchvision are ALREADY installed with the right CUDA build,
+# so DO NOT pip-install torch there (it can break CUDA). Only install the extras below.
+
+# --- core (already present on Colab/RunPod; pin only for a fresh local/venv install) ---
+# torch==2.5.1
+# torchvision==0.20.1
+
+# --- actually-needed extras ---
+timm>=1.0.0        # required: core/nets/__init__.py eagerly imports efficientvit -> timm
+einops>=0.8.0      # required by efficientvit blocks
+numpy
+
+# --- for OUR analysis/detector work (not needed to run SCAR itself) ---
+scikit-learn
+matplotlib
+pandas
