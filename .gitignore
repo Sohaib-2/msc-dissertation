@@ -1,0 +1,27 @@
+# datasets, downloaded on first use
+**/data/
+
+# training output directories
+runtime_attack/runtime_attack_out/
+**/distillation/
+**/pretrain/
+**/attack/
+
+# the SCAR clone is fetched separately, see the README
+scar_baseline/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# logs
+*.log
+
+# editors and OS
+.vscode/
+.DS_Store
+*.swp
+*~

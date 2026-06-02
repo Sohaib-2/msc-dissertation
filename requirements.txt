@@ -1,0 +1,21 @@
+# Dependencies for the attack, the detector, the evaluations and the demo.
+#
+# torch and torchvision are left unpinned because rented GPU images ship their own
+# CUDA-matched builds, and installing over them tends to break CUDA. Install those two
+# only for a fresh local environment; on a rented instance install the rest.
+#
+# Verified on Python 3.12.3 with torch 2.12.0, torchvision 0.27.0, numpy 2.4.4 and
+# Pillow 12.2.0. The reported GPU results were produced with torch 2.4/2.5 CUDA builds.
+
+torch
+torchvision
+
+# required by the SCAR harness: core/nets/__init__.py imports efficientvit, which needs timm
+timm>=1.0.0
+einops>=0.8.0
+
+numpy
+pillow
+scikit-learn
+matplotlib
+pandas
