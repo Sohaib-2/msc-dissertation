@@ -1,0 +1,29 @@
+{
+  "args": {
+    "dataset": "cifar10",
+    "teacher": "resnet18",
+    "student": "mobilenetv2",
+    "teacher_ckp": null,
+    "target_label": 0,
+    "alphas": "1.0",
+    "rule": "soft",
+    "poison_rate": 0.1,
+    "delta": 1.0,
+    "n_train": 4000,
+    "n_test": 2000,
+    "epochs": 1,
+    "batch_size": 128,
+    "lr": 0.001,
+    "device": "cpu",
+    "seed": 0
+  },
+  "rows": [
+    {
+      "alpha": 1.0,
+      "acc": 0.1095,
+      "asr": 0.0,
+      "teacher_acc": 0.6925,
+      "teacher_asr": 0.03215077605321508
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "args": {
+    "dataset": "cifar10",
+    "model": "resnet18",
+    "teacher_ckp": null,
+    "target_label": 0,
+    "alphas": "0,0.1,0.25,0.5",
+    "rule": "soft",
+    "poison_rate": 0.1,
+    "window": 100,
+    "n_windows": 300,
+    "n_eval": 10000,
+    "batch_size": 256,
+    "device": "cpu",
+    "seed": 0
+  },
+  "rows": [
+    {
+      "alpha": 0.0,
+      "win_hist_kl_auc": 0.5016722222222223,
+      "win_hist_kl_tpr05": 0.0033333333333333335,
+      "win_max_class_excess_auc": 0.4997833333333334,
+      "win_max_class_excess_tpr05": 0.05,
+      "win_mean_entropy_drop_auc": 0.4969444444444445,
+      "win_mean_entropy_drop_tpr05": 0.05333333333333334,
+      "win_mean_prob_kl_auc": 0.4990333333333334,
+      "win_mean_prob_kl_tpr05": 0.05,
+      "qry_entropy_drop_auc": 0.4971663333333334,
+      "qry_confidence_spike_auc": 0.49671327777777785,
+      "qry_kl_from_clean_mean_auc": 0.4967253333333333
+    },
+    {
+      "alpha": 0.1,
+      "win_hist_kl_auc": 0.5031666666666668,
+      "win_hist_kl_tpr05": 0.056666666666666664,
+      "win_max_class_excess_auc": 0.5059666666666667,
+      "win_max_class_excess_tpr05": 0.05333333333333334,
+      "win_mean_entropy_drop_auc": 0.38627777777777783,
+      "win_mean_entropy_drop_tpr05": 0.02,
+      "win_mean_prob_kl_auc": 0.5204222222222221,
+      "win_mean_prob_kl_tpr05": 0.06,
+      "qry_entropy_drop_auc": 0.383603,
+      "qry_confidence_spike_auc": 0.39534233333333335,
+      "qry_kl_from_clean_mean_auc": 0.395242
+    },
+    {
+      "alpha": 0.25,
+      "win_hist_kl_auc": 0.5175000000000001,
+      "win_hist_kl_tpr05": 0.06333333333333334,
+      "win_max_class_excess_auc": 0.5268888888888889,
+      "win_max_class_excess_tpr05": 0.056666666666666664,
+      "win_mean_entropy_drop_auc": 0.3337333333333334,
+      "win_mean_entropy_drop_tpr05": 0.016666666666666666,
+      "win_mean_prob_kl_auc": 0.5876888888888889,
+      "win_mean_prob_kl_tpr05": 0.07333333333333333,
+      "qry_entropy_drop_auc": 0.33266533333333337,
+      "qry_confidence_spike_auc": 0.29403077777777775,
+      "qry_kl_from_clean_mean_auc": 0.35326744444444447
+    },
+    {
+      "alpha": 0.5,
+      "win_hist_kl_auc": 0.8943444444444445,
+      "win_hist_kl_tpr05": 0.5133333333333333,
+      "win_max_class_excess_auc": 0.9299222222222223,
+      "win_max_class_excess_tpr05": 0.5733333333333334,
+      "win_mean_entropy_drop_auc": 0.3657777777777778,
+      "win_mean_entropy_drop_tpr05": 0.02666666666666667,
+      "win_mean_prob_kl_auc": 0.7395333333333333,
+      "win_mean_prob_kl_tpr05": 0.15333333333333332,
+      "qry_entropy_drop_auc": 0.352958,
+      "qry_confidence_spike_auc": 0.24753000000000003,
+      "qry_kl_from_clean_mean_auc": 0.387769
+    }
+  ]
+}

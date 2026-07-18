@@ -1,0 +1,97 @@
+{
+  "_provenance": {
+    "run": "gpu_run_2026-08-25 (RunPod RTX 5080), the run Chapter 5 reports",
+    "status": "RECONSTRUCTED 2026-08-31 to 4 decimal places",
+    "why": "the 2026-08-31 reproduction run wrote the same filename and this file was overwritten when its results were copied back from the pod",
+    "authoritative_source": "gpu_run_2026-08-25/SUMMARY.txt (untouched) for the headline best-signal AUC/TPR per alpha",
+    "note": "values are correct to 4 d.p.; the original file held more decimal places (e.g. alpha=0.5 max_class_excess AUC was 0.99744)",
+    "reproduction": "teacher_repro_2026-08-31/ holds an independent retrain of the same configuration and its detector results"
+  },
+  "args": {
+    "dataset": "cifar10",
+    "model": "resnet50",
+    "teacher_ckp": "checkpoints/clean_teacher_resnet50.pth",
+    "target_label": 0,
+    "alphas": "0,0.25,0.5,0.75,1.0",
+    "rule": "soft",
+    "poison_rate": 0.1,
+    "window": 200,
+    "n_windows": 300,
+    "n_eval": 10000,
+    "batch_size": 256,
+    "device": "cuda",
+    "seed": 0
+  },
+  "rows": [
+    {
+      "alpha": 0.0,
+      "win_hist_kl_auc": 0.4983,
+      "win_hist_kl_tpr05": 0.07,
+      "win_max_class_excess_auc": 0.4975,
+      "win_max_class_excess_tpr05": 0.0333,
+      "win_mean_entropy_drop_auc": 0.4947,
+      "win_mean_entropy_drop_tpr05": 0.04,
+      "win_mean_prob_kl_auc": 0.5008,
+      "win_mean_prob_kl_tpr05": 0.05,
+      "qry_entropy_drop_auc": 0.494,
+      "qry_confidence_spike_auc": 0.4959,
+      "qry_kl_from_clean_mean_auc": 0.4998
+    },
+    {
+      "alpha": 0.25,
+      "win_hist_kl_auc": 0.5036,
+      "win_hist_kl_tpr05": 0.04,
+      "win_max_class_excess_auc": 0.5022,
+      "win_max_class_excess_tpr05": 0.0433,
+      "win_mean_entropy_drop_auc": 0.0047,
+      "win_mean_entropy_drop_tpr05": 0.0,
+      "win_mean_prob_kl_auc": 0.6102,
+      "win_mean_prob_kl_tpr05": 0.1333,
+      "qry_entropy_drop_auc": 0.0954,
+      "qry_confidence_spike_auc": 0.0939,
+      "qry_kl_from_clean_mean_auc": 0.1359
+    },
+    {
+      "alpha": 0.5,
+      "win_hist_kl_auc": 0.9778,
+      "win_hist_kl_tpr05": 0.91,
+      "win_max_class_excess_auc": 0.9974,
+      "win_max_class_excess_tpr05": 0.99,
+      "win_mean_entropy_drop_auc": 0.0006,
+      "win_mean_entropy_drop_tpr05": 0.0,
+      "win_mean_prob_kl_auc": 0.7787,
+      "win_mean_prob_kl_tpr05": 0.2867,
+      "qry_entropy_drop_auc": 0.0703,
+      "qry_confidence_spike_auc": 0.0529,
+      "qry_kl_from_clean_mean_auc": 0.1146
+    },
+    {
+      "alpha": 0.75,
+      "win_hist_kl_auc": 0.9806,
+      "win_hist_kl_tpr05": 0.89,
+      "win_max_class_excess_auc": 0.9985,
+      "win_max_class_excess_tpr05": 0.9967,
+      "win_mean_entropy_drop_auc": 0.0071,
+      "win_mean_entropy_drop_tpr05": 0.0,
+      "win_mean_prob_kl_auc": 0.9235,
+      "win_mean_prob_kl_tpr05": 0.6067,
+      "qry_entropy_drop_auc": 0.0975,
+      "qry_confidence_spike_auc": 0.0968,
+      "qry_kl_from_clean_mean_auc": 0.1412
+    },
+    {
+      "alpha": 1.0,
+      "win_hist_kl_auc": 0.9802,
+      "win_hist_kl_tpr05": 0.9067,
+      "win_max_class_excess_auc": 0.9962,
+      "win_max_class_excess_tpr05": 0.9933,
+      "win_mean_entropy_drop_auc": 0.6494,
+      "win_mean_entropy_drop_tpr05": 0.1367,
+      "win_mean_prob_kl_auc": 0.9812,
+      "win_mean_prob_kl_tpr05": 0.9033,
+      "qry_entropy_drop_auc": 0.9052,
+      "qry_confidence_spike_auc": 0.7548,
+      "qry_kl_from_clean_mean_auc": 0.996
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "args": {
+    "dataset": "cifar10",
+    "teacher": "resnet18",
+    "student": "mobilenetv2",
+    "teacher_ckp": null,
+    "target_label": 0,
+    "alphas": "15,10,8",
+    "rule": "logit",
+    "poison_rate": 0.1,
+    "delta": 1.0,
+    "n_train": 4000,
+    "n_test": 2000,
+    "epochs": 10,
+    "batch_size": 128,
+    "lr": 0.001,
+    "device": "cpu",
+    "seed": 0
+  },
+  "rows": [
+    {
+      "alpha": 8.0,
+      "acc": 0.4965,
+      "asr": 0.5909090909090909,
+      "teacher_acc": 0.6925,
+      "teacher_asr": 0.03215077605321508
+    },
+    {
+      "alpha": 10.0,
+      "acc": 0.4975,
+      "asr": 0.7289356984478935,
+      "teacher_acc": 0.6925,
+      "teacher_asr": 0.03215077605321508
+    },
+    {
+      "alpha": 15.0,
+      "acc": 0.4955,
+      "asr": 0.8009977827050998,
+      "teacher_acc": 0.6925,
+      "teacher_asr": 0.03215077605321508
+    }
+  ]
+}
