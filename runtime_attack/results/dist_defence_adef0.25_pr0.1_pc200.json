@@ -1,0 +1,98 @@
+{
+  "args": {
+    "mode": "both",
+    "dataset": "cifar10",
+    "teacher": "resnet50",
+    "teacher_ckp": "checkpoints/clean_teacher_resnet50.pth",
+    "target_label": 0,
+    "rule": "soft",
+    "poison_rate": 0.1,
+    "delta": 1.0,
+    "archs": "mobilenetv2,shufflenetv2,resnet18,efficientvit",
+    "alpha": 1.0,
+    "n_train": 0,
+    "n_test": 0,
+    "epochs": 25,
+    "batch_size": 128,
+    "lr": 0.001,
+    "alpha_def": 0.25,
+    "per_client": 200,
+    "max_k": 10,
+    "n_windows": 200,
+    "n_eval": 10000,
+    "device": "cuda",
+    "seed": 0
+  },
+  "rows": [
+    {
+      "k": 1,
+      "window": 200,
+      "auc": 0.625575,
+      "tpr05": 0.12,
+      "signal": "mean_prob_kl"
+    },
+    {
+      "k": 2,
+      "window": 400,
+      "auc": 0.710925,
+      "tpr05": 0.21,
+      "signal": "mean_prob_kl"
+    },
+    {
+      "k": 3,
+      "window": 600,
+      "auc": 0.7801,
+      "tpr05": 0.36,
+      "signal": "mean_prob_kl"
+    },
+    {
+      "k": 4,
+      "window": 800,
+      "auc": 0.8345750000000001,
+      "tpr05": 0.385,
+      "signal": "mean_prob_kl"
+    },
+    {
+      "k": 5,
+      "window": 1000,
+      "auc": 0.886925,
+      "tpr05": 0.59,
+      "signal": "mean_prob_kl"
+    },
+    {
+      "k": 6,
+      "window": 1200,
+      "auc": 0.9090750000000001,
+      "tpr05": 0.64,
+      "signal": "mean_prob_kl"
+    },
+    {
+      "k": 7,
+      "window": 1400,
+      "auc": 0.935825,
+      "tpr05": 0.625,
+      "signal": "mean_prob_kl"
+    },
+    {
+      "k": 8,
+      "window": 1600,
+      "auc": 0.95245,
+      "tpr05": 0.775,
+      "signal": "mean_prob_kl"
+    },
+    {
+      "k": 9,
+      "window": 1800,
+      "auc": 0.97105,
+      "tpr05": 0.805,
+      "signal": "mean_prob_kl"
+    },
+    {
+      "k": 10,
+      "window": 2000,
+      "auc": 0.9801,
+      "tpr05": 0.935,
+      "signal": "mean_prob_kl"
+    }
+  ]
+}

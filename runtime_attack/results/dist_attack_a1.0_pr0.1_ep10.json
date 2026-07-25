@@ -1,0 +1,48 @@
+{
+  "args": {
+    "mode": "attack",
+    "dataset": "cifar10",
+    "teacher": "resnet18",
+    "teacher_ckp": null,
+    "target_label": 0,
+    "rule": "soft",
+    "poison_rate": 0.1,
+    "delta": 1.0,
+    "archs": "mobilenetv2,shufflenetv2,resnet18,efficientvit",
+    "alpha": 1.0,
+    "n_train": 4000,
+    "n_test": 2000,
+    "epochs": 10,
+    "batch_size": 128,
+    "lr": 0.001,
+    "alpha_def": 0.25,
+    "per_client": 200,
+    "max_k": 10,
+    "n_windows": 200,
+    "n_eval": 10000,
+    "device": "cpu",
+    "seed": 0
+  },
+  "students": [
+    {
+      "student": "mobilenetv2",
+      "acc": 0.4965,
+      "asr": 0.8270509977827051
+    },
+    {
+      "student": "shufflenetv2",
+      "acc": 0.4225,
+      "asr": 0.7106430155210643
+    },
+    {
+      "student": "resnet18",
+      "acc": 0.6375,
+      "asr": 0.5027716186252772
+    },
+    {
+      "student": "efficientvit",
+      "acc": 0.52,
+      "asr": 0.6657427937915743
+    }
+  ]
+}
