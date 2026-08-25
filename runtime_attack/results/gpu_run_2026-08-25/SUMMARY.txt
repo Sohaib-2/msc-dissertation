@@ -1,0 +1,76 @@
+############ GPU CONFIRMATION RUN ############
+  teacher=resnet50  student=mobilenetv2  device=cuda
+  teacher_ep=30  distill_ep=40  dist_ep=25
+  alphas=0,0.25,0.5,0.75,1.0  poison_rate=0.1  target=0
+  started: Tue Aug 25 14:51:07 UTC 2026
+  GPU: NVIDIA GeForce RTX 5080
+#################################################
+>>> [1/4] training clean resnet50 teacher (full data)...
+>>> [2/4] ASR sweep over alpha (full data)...
+>>> [3/4] detector evaluation...
+>>> [4/4] distributed one teacher -> many students...
+
+############ HEADLINE LINES (grep) ############
+--- teacher clean ACC ---
+  clean teacher ACC = 0.8632
+--- ASR sweep ---
+[epoch 30] student_model ACC: 0.8336  ASR: 0.5568
+[epoch 31] student_model ACC: 0.8368  ASR: 0.5392
+[epoch 32] student_model ACC: 0.8399  ASR: 0.5421
+[epoch 33] student_model ACC: 0.8408  ASR: 0.5596
+[epoch 34] student_model ACC: 0.8410  ASR: 0.6214
+[epoch 35] student_model ACC: 0.8428  ASR: 0.6042
+[epoch 36] student_model ACC: 0.8416  ASR: 0.5899
+[epoch 37] student_model ACC: 0.8433  ASR: 0.6569
+[epoch 38] student_model ACC: 0.8446  ASR: 0.6096
+[epoch 39] student_model ACC: 0.8442  ASR: 0.5844
+[epoch 40] student_model ACC: 0.8431  ASR: 0.6190
+[epoch final] student_model ACC: 0.8431  ASR: 0.6190
+--- alpha=1.0 : ACC=0.8431  ASR=0.6190  (703s) ---
+ clean teacher ASR: 0.0152
+ alpha=0.0   ACC=0.8415  ASR=0.0166
+ alpha=0.25  ACC=0.8445  ASR=0.0828
+ alpha=0.5   ACC=0.8386  ASR=0.1581
+ alpha=0.75  ACC=0.8469  ASR=0.2603
+ alpha=1.0   ACC=0.8431  ASR=0.6190
+Saved -> results/asr_sweep_soft_pr0.1_ep40_n0.md (+ .json)
+--- detector AUC/TPR ---
+  alpha=0.0   | windowed AUC=0.501 (mean_prob_kl) TPR@5%FPR=0.050 | per-query AUC=0.500
+  alpha=0.25  | windowed AUC=0.610 (mean_prob_kl) TPR@5%FPR=0.133 | per-query AUC=0.136
+  alpha=0.5   | windowed AUC=0.997 (max_class_excess) TPR@5%FPR=0.990 | per-query AUC=0.115
+  alpha=0.75  | windowed AUC=0.998 (max_class_excess) TPR@5%FPR=0.997 | per-query AUC=0.141
+  alpha=1.0   | windowed AUC=0.996 (max_class_excess) TPR@5%FPR=0.993 | per-query AUC=0.996
+--- distributed ---
+[epoch 25] student_model ACC: 0.8752  ASR: 0.6351
+[epoch final] student_model ACC: 0.8752  ASR: 0.6351
+--- resnet18: ACC=0.8752  ASR=0.6351  (430s) ---
+[epoch 1] student_model ACC: 0.5356  ASR: 0.7846
+[epoch 2] student_model ACC: 0.6148  ASR: 0.6508
+[epoch 3] student_model ACC: 0.6725  ASR: 0.4582
+[epoch 4] student_model ACC: 0.6912  ASR: 0.7077
+[epoch 5] student_model ACC: 0.7110  ASR: 0.5436
+[epoch 6] student_model ACC: 0.7241  ASR: 0.5483
+[epoch 7] student_model ACC: 0.7060  ASR: 0.5162
+[epoch 8] student_model ACC: 0.7398  ASR: 0.5338
+[epoch 9] student_model ACC: 0.7351  ASR: 0.6453
+[epoch 10] student_model ACC: 0.7337  ASR: 0.4531
+[epoch 11] student_model ACC: 0.7140  ASR: 0.5769
+[epoch 12] student_model ACC: 0.7425  ASR: 0.6509
+[epoch 13] student_model ACC: 0.7310  ASR: 0.6058
+[epoch 14] student_model ACC: 0.7221  ASR: 0.7573
+[epoch 15] student_model ACC: 0.7393  ASR: 0.6081
+[epoch 16] student_model ACC: 0.7326  ASR: 0.6112
+[epoch 17] student_model ACC: 0.7342  ASR: 0.6029
+[epoch 18] student_model ACC: 0.7394  ASR: 0.6570
+[epoch 19] student_model ACC: 0.7353  ASR: 0.5869
+[epoch 20] student_model ACC: 0.7339  ASR: 0.6060
+[epoch 21] student_model ACC: 0.7375  ASR: 0.5844
+[epoch 22] student_model ACC: 0.7369  ASR: 0.6184
+[epoch 23] student_model ACC: 0.7373  ASR: 0.5807
+[epoch 24] student_model ACC: 0.7381  ASR: 0.5954
+[epoch 25] student_model ACC: 0.7361  ASR: 0.6146
+[epoch final] student_model ACC: 0.7361  ASR: 0.6146
+--- efficientvit: ACC=0.7361  ASR=0.6146  (569s) ---
+
+finished: Tue Aug 25 16:34:17 UTC 2026
+All logs + result JSON/MD are under: results/gpu_run_2026-08-25/

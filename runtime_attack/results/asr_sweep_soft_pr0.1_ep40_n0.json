@@ -1,0 +1,57 @@
+{
+  "args": {
+    "dataset": "cifar10",
+    "teacher": "resnet50",
+    "student": "mobilenetv2",
+    "teacher_ckp": "checkpoints/clean_teacher_resnet50.pth",
+    "target_label": 0,
+    "alphas": "0,0.25,0.5,0.75,1.0",
+    "rule": "soft",
+    "poison_rate": 0.1,
+    "delta": 1.0,
+    "n_train": 0,
+    "n_test": 0,
+    "epochs": 40,
+    "batch_size": 128,
+    "lr": 0.001,
+    "device": "cuda",
+    "seed": 0
+  },
+  "rows": [
+    {
+      "alpha": 0.0,
+      "acc": 0.8415,
+      "asr": 0.016555555555555556,
+      "teacher_acc": 0.8632,
+      "teacher_asr": 0.015222222222222222
+    },
+    {
+      "alpha": 0.25,
+      "acc": 0.8445,
+      "asr": 0.08277777777777778,
+      "teacher_acc": 0.8632,
+      "teacher_asr": 0.015222222222222222
+    },
+    {
+      "alpha": 0.5,
+      "acc": 0.8386,
+      "asr": 0.15811111111111112,
+      "teacher_acc": 0.8632,
+      "teacher_asr": 0.015222222222222222
+    },
+    {
+      "alpha": 0.75,
+      "acc": 0.8469,
+      "asr": 0.26033333333333336,
+      "teacher_acc": 0.8632,
+      "teacher_asr": 0.015222222222222222
+    },
+    {
+      "alpha": 1.0,
+      "acc": 0.8431,
+      "asr": 0.619,
+      "teacher_acc": 0.8632,
+      "teacher_asr": 0.015222222222222222
+    }
+  ]
+}
