@@ -1,0 +1,107 @@
+{
+  "args": {
+    "dataset": "cifar10",
+    "model": "resnet18",
+    "teacher_ckp": null,
+    "target_label": 0,
+    "alphas": "0,0.25,0.5,0.75,1.0",
+    "rule": "soft",
+    "poison_rate": 0.1,
+    "window": 200,
+    "n_windows": 300,
+    "n_eval": 10000,
+    "batch_size": 256,
+    "device": "cpu",
+    "seed": 0
+  },
+  "primary_signal": "max_class_excess",
+  "win_ref_mean": {
+    "hist_kl": 0.02195848136906939,
+    "max_class_excess": 0.035724,
+    "mean_entropy_drop": -0.00014887196312503238,
+    "mean_prob_kl": 0.01301225187206501
+  },
+  "win_ref_std": {
+    "hist_kl": 0.009034800500593212,
+    "max_class_excess": 0.011207358773996727,
+    "mean_entropy_drop": 0.03594887795065396,
+    "mean_prob_kl": 0.005924197159239762
+  },
+  "rows": [
+    {
+      "alpha": 0.0,
+      "combined_auc": 0.49805,
+      "combined_tpr05": 0.05,
+      "primary_auc": 0.49729999999999996,
+      "primary_tpr05": 0.04666666666666667,
+      "oracle_auc": 0.5005,
+      "oracle_signal": "hist_kl",
+      "per_signal_auc": {
+        "hist_kl": 0.5005,
+        "max_class_excess": 0.49729999999999996,
+        "mean_entropy_drop": 0.4950555555555556,
+        "mean_prob_kl": 0.4998111111111111
+      }
+    },
+    {
+      "alpha": 0.25,
+      "combined_auc": 0.5447222222222222,
+      "combined_tpr05": 0.09,
+      "primary_auc": 0.5437611111111111,
+      "primary_tpr05": 0.06,
+      "oracle_auc": 0.6731555555555555,
+      "oracle_signal": "mean_prob_kl",
+      "per_signal_auc": {
+        "hist_kl": 0.53535,
+        "max_class_excess": 0.5437611111111111,
+        "mean_entropy_drop": 0.2642333333333333,
+        "mean_prob_kl": 0.6731555555555555
+      }
+    },
+    {
+      "alpha": 0.5,
+      "combined_auc": 0.9927,
+      "combined_tpr05": 0.97,
+      "primary_auc": 0.9976388888888889,
+      "primary_tpr05": 0.9966666666666667,
+      "oracle_auc": 0.9976388888888889,
+      "oracle_signal": "max_class_excess",
+      "per_signal_auc": {
+        "hist_kl": 0.9839555555555556,
+        "max_class_excess": 0.9976388888888889,
+        "mean_entropy_drop": 0.31733333333333336,
+        "mean_prob_kl": 0.8849888888888888
+      }
+    },
+    {
+      "alpha": 0.75,
+      "combined_auc": 0.9863222222222221,
+      "combined_tpr05": 0.9366666666666666,
+      "primary_auc": 0.9966722222222222,
+      "primary_tpr05": 0.9866666666666667,
+      "oracle_auc": 0.9966722222222222,
+      "oracle_signal": "max_class_excess",
+      "per_signal_auc": {
+        "hist_kl": 0.9785777777777778,
+        "max_class_excess": 0.9966722222222222,
+        "mean_entropy_drop": 0.553,
+        "mean_prob_kl": 0.9678111111111112
+      }
+    },
+    {
+      "alpha": 1.0,
+      "combined_auc": 0.9970833333333334,
+      "combined_tpr05": 0.99,
+      "primary_auc": 0.9969,
+      "primary_tpr05": 0.99,
+      "oracle_auc": 0.9978555555555555,
+      "oracle_signal": "mean_prob_kl",
+      "per_signal_auc": {
+        "hist_kl": 0.9852888888888889,
+        "max_class_excess": 0.9969,
+        "mean_entropy_drop": 0.9488777777777778,
+        "mean_prob_kl": 0.9978555555555555
+      }
+    }
+  ]
+}
