@@ -39,6 +39,34 @@ The detector figures were checked on a second, independently trained teacher of 
 configuration in `results/teacher_repro_2026-08-31/`. It reaches 86.49% clean accuracy and every
 detector figure agrees with the original to within about 0.01 of AUC.
 
+## Detection without choosing the signal afterwards
+
+Quoting whichever signal scored highest on each condition is selection after the fact, so
+`eval_prespecified.py` reports the signal fixed in advance beside a combined rule that is also
+fixed in advance. At the stealthy alpha = 0.25 setting, across window sizes:
+
+| window | pre-specified `max_class_excess` | combined rule | best signal, chosen afterwards |
+|---|---|---|---|
+| 100 | 0.500 | 0.436 | 0.547 |
+| 200 | 0.499 | 0.517 | 0.613 |
+| 500 | 0.502 | 0.680 | 0.723 |
+| 1000 | 0.505 | 0.859 | 0.873 |
+| 2000 | 0.511 | 0.980 | 0.982 |
+
+The pre-specified signal does not improve with window size at all. It reads the histogram of
+predicted classes, and a gentle hijack seldom changes which class is predicted, so a longer
+window has nothing to accumulate. The combined rule does recover the attack, and it needs no
+knowledge of the trigger, the target class or the results, though below a few hundred outputs it
+is worse than chance because its standardisation is estimated too noisily at that length. At
+alpha = 0.5 and above both saturate at 1.000 from 400 outputs onward.
+
+## What the monitor costs
+
+Scoring runs once per window, not once per query. On a CPU where the teacher answers in 33.6 ms
+per query, the scoring pass costs 0.10 ms at a 100-output window and 0.37 ms at 2000, adding
+under 0.003% to serving time. Against a teacher answering in 1 ms per query the overhead is
+0.018% to 0.103%. A window holds 3.9 to 78 KiB. See `results/overhead_resnet50_cpu.md`.
+
 ## Files
 
 - `train_teacher.py` — trains a clean teacher and saves it to `checkpoints/`. Run this first;
@@ -62,6 +90,13 @@ detector figure agrees with the original to within about 0.01 of AUC.
 - `distributed.py` — one compromised teacher against several students, in both directions: does
   the backdoor reach every student, and does pooling their query streams help the detector.
 - `smoke_test.py` — a small CPU run that checks the mechanism end to end without a GPU.
+- `eval_prespecified.py` — the window sweep without after-the-fact signal selection. Reports the
+  signal fixed in advance, the deployable combined rule and the best-chosen-afterwards upper
+  bound, at every window size and attack strength. The pooled-client result is read off the same
+  sweep. Runs on a CPU.
+- `measure_overhead.py` — what the monitor costs: scoring time per window against teacher
+  inference time, memory per window, and the bytes a pooled deployment would carry.
+- `make_figs.py` — regenerates the window-size and pooled-client figures.
 - `measure_demo_rates.py` — measures the demo's true alarm rate per walkthrough step.
 - `demo/` — a single-page live dashboard that runs the real pipeline. See `demo/README.md`.
 
