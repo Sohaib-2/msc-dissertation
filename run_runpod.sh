@@ -1,24 +1,30 @@
 #!/usr/bin/env bash
 # =============================================================================
-# TURNKEY RUNPOD SCRIPT  —  OUR confirmation run (Phase 2 contribution, GPU)
+# Full-scale evaluation, end to end
 # =============================================================================
-# Re-runs the whole runtime-attack + detector story at REAL scale (ResNet-50
-# teacher, full CIFAR-10, GPU epochs) so Chapter 5 reports real numbers instead
-# of the CPU-prototype magnitudes. Fixes the "clean acc only ~0.49" artefact
-# (prototype was 4k images / few epochs) -> should land ~0.85+.
+# Runs the attack and the detector at full scale: a ResNet-50 teacher on the
+# complete CIFAR-10 training set, trained on a GPU.
 #
-# Reads the SCAR core code from the vendored ./scar_baseline (already in this
-# repo) — no separate clone needed for OUR run. The SCAR *baseline* re-run is a
-# separate script (run_scar_full.sh) that clones upstream to stay pristine.
+# The SCAR core code is read from ./scar_baseline, which must be present; see
+# the README for the pinned commit to clone. The SCAR baseline reproduction is
+# a separate script, run_scar_full.sh, which clones upstream separately so the
+# vendored copy stays untouched.
 #
-# Cost: ~$1-3 on a community RTX 3090/4090 (~2 hours). Well inside the $20.
+# Cost: roughly $1-3 on a community RTX 3090 or 4090, about two hours.
 #
-# WHAT IT PRODUCES (all under runtime_attack/results/gpu_run_<date>/):
-#   1. clean ResNet-50 teacher checkpoint + its clean ACC
-#   2. ASR-vs-alpha sweep   (attack strength at scale)
-#   3. detector AUC/TPR     (detection at scale)
-#   4. distributed one-to-many attack + pooled-defence numbers
-#   5. SUMMARY.txt          <- copy-paste THIS whole file back to me
+# What it produces, under runtime_attack/results/gpu_run_<date>/:
+#   1. a clean ResNet-50 teacher checkpoint and its clean accuracy
+#   2. the attack-success sweep over hijack strength
+#   3. the per-signal detector evaluation
+#   4. the distributed one-to-many attack and the pooled defence
+#   5. the window sweep reporting the pre-specified signal, the combined rule
+#      and the after-the-fact best (Sections 5.6 and 5.7, Figures 5.3 and 5.4)
+#   6. the monitor's runtime overhead (Section 6.4)
+#   7. the two figures drawn from step 5
+#   8. SUMMARY.txt, collecting the headline lines from every step
+#
+# Steps 5 to 7 need no GPU and take a few minutes; they are included so that
+# this one script regenerates every reported result.
 #
 # USAGE (on the RunPod pod, inside tmux):
 #   git clone https://github.com/Sohaib-2/msc-dissertation.git
@@ -47,7 +53,7 @@ mkdir -p "$OUT"
 CKP="checkpoints/clean_teacher_${TEACHER_ARCH}.pth"
 SUMMARY="$OUT/SUMMARY.txt"
 
-echo "############ OUR GPU CONFIRMATION RUN ############" | tee "$SUMMARY"
+echo "############ FULL-SCALE EVALUATION RUN ############" | tee "$SUMMARY"
 echo "  teacher=$TEACHER_ARCH  student=$STUDENT_ARCH  device=$DEV" | tee -a "$SUMMARY"
 echo "  teacher_ep=$TEACHER_EPOCHS  distill_ep=$DISTILL_EPOCHS  dist_ep=$DIST_EPOCHS" | tee -a "$SUMMARY"
 echo "  alphas=$ALPHAS  poison_rate=0.1  target=0" | tee -a "$SUMMARY"
@@ -83,6 +89,28 @@ python distributed.py --mode both --teacher "$TEACHER_ARCH" --teacher_ckp "$CKP"
     --poison_rate 0.1 --alpha 1.0 --alpha_def 0.25 --epochs "$DIST_EPOCHS" \
     --n_train 0 --n_test 0 --device "$DEV" 2>&1 | tee "$OUT/4_distributed.log"
 
+# ---- 5/8  window sweep: pre-specified vs combined vs after-the-fact best ----
+# CPU is enough here: it reuses the teacher checkpoint and does three forward
+# passes, then all the windowing is index arithmetic.
+echo ">>> [5/8] window sweep without after-the-fact signal selection..." | tee -a "$SUMMARY"
+python eval_prespecified.py --model "$TEACHER_ARCH" --teacher_ckp "$CKP" \
+    --rule soft --poison_rate 0.1 --device "$DEV" 2>&1 | tee "$OUT/5_prespecified.log"
+
+# ---- 6/8  the operational rule at the evaluation's own window ----
+echo ">>> [6/8] pre-specified and combined rules at window 200..." | tee -a "$SUMMARY"
+python eval_combined.py --model "$TEACHER_ARCH" --teacher_ckp "$CKP" \
+    --device "$DEV" 2>&1 | tee "$OUT/6_combined.log"
+
+# ---- 7/8  what the monitor costs to run ----
+echo ">>> [7/8] monitor overhead..." | tee -a "$SUMMARY"
+python measure_overhead.py --model "$TEACHER_ARCH" --teacher_ckp "$CKP" \
+    --device cpu 2>&1 | tee "$OUT/7_overhead.log"
+
+# ---- 8/8  redraw Figures 5.3 and 5.4 from the sweep in step 5 ----
+echo ">>> [8/8] redrawing the window and pooling figures..." | tee -a "$SUMMARY"
+python make_figs.py 2>&1 | tee "$OUT/8_figures.log" || \
+    echo "    (matplotlib not installed; figures skipped, results unaffected)"
+
 # ---- collect headline lines into SUMMARY ----
 {
   echo ""
@@ -91,6 +119,9 @@ python distributed.py --mode both --teacher "$TEACHER_ARCH" --teacher_ckp "$CKP"
   echo "--- ASR sweep ---";              grep -iE "alpha|ASR|ACC" "$OUT/2_asr_sweep.log" | tail -20 || true
   echo "--- detector AUC/TPR ---";       grep -iE "alpha|AUC|TPR" "$OUT/3_detector.log" | tail -25 || true
   echo "--- distributed ---";            grep -iE "arch|ASR|AUC|TPR|k=|pooled" "$OUT/4_distributed.log" | tail -30 || true
+  echo "--- pre-specified vs combined vs oracle ---"; grep -iE "window=" "$OUT/5_prespecified.log" | tail -30 || true
+  echo "--- operational rule at window 200 ---";      grep -iE "alpha=" "$OUT/6_combined.log" | tail -10 || true
+  echo "--- monitor overhead ---";                    grep -iE "window=|teacher inference" "$OUT/7_overhead.log" || true
   echo ""
   echo "finished: $(date)"
   echo "All logs + result JSON/MD are under: $OUT/"
