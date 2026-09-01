@@ -1,0 +1,16 @@
+/usr/local/lib/python3.12/dist-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+=== Operational detector (pre-specified rule) ===
+  teacher=clean_teacher_resnet50.pth  rule=soft  window=200
+  window-signal calibration (clean mean ± sd):
+    hist_kl              +0.02307 ± 0.00975
+    max_class_excess     +0.03572 ± 0.01150
+    mean_entropy_drop    +0.00057 ± 0.01357
+    mean_prob_kl         +0.02203 ± 0.00925
+  alpha=0.0   | COMBINED AUC=0.499 TPR=0.050 | PRIMARY(max_class_excess) AUC=0.502 TPR=0.040 | oracle 0.502 (max_class_excess)
+  alpha=0.25  | COMBINED AUC=0.518 TPR=0.080 | PRIMARY(max_class_excess) AUC=0.501 TPR=0.043 | oracle 0.603 (mean_prob_kl)
+  alpha=0.5   | COMBINED AUC=0.989 TPR=0.957 | PRIMARY(max_class_excess) AUC=0.994 TPR=0.980 | oracle 0.994 (max_class_excess)
+  alpha=0.75  | COMBINED AUC=0.987 TPR=0.930 | PRIMARY(max_class_excess) AUC=0.995 TPR=0.987 | oracle 0.995 (max_class_excess)
+  alpha=1.0   | COMBINED AUC=0.988 TPR=0.957 | PRIMARY(max_class_excess) AUC=0.994 TPR=0.980 | oracle 0.994 (max_class_excess)
+
+Saved -> results/detector_combined_resnet50_soft_pr0.1_w200.json (+ .md)

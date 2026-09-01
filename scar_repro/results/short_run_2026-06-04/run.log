@@ -1,0 +1,521 @@
+############ STAGE 1/3 — pretrain trigger (teacher=resnet50, student=resnet18) ############
+/usr/local/lib/python3.11/dist-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+2026-06-04 11:17:31,382 utils.py[line:26] INFO Current log file is pretrain/cifar10/resnet50/2026-06-04-1117.log
+2026-06-04 11:17:31,382 pretrain.py[line:115] INFO gpu_id:0
+2026-06-04 11:17:31,382 pretrain.py[line:115] INFO teacher_model:resnet50
+2026-06-04 11:17:31,382 pretrain.py[line:115] INFO student_model:resnet18
+2026-06-04 11:17:31,382 pretrain.py[line:115] INFO dataset:cifar10
+2026-06-04 11:17:31,382 pretrain.py[line:115] INFO target_label:0
+2026-06-04 11:17:31,382 pretrain.py[line:115] INFO batch_size:256
+2026-06-04 11:17:31,382 pretrain.py[line:115] INFO epsilon:0.1
+Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./data/cifar10/cifar-10-python.tar.gz
+  0%|          | 0/170498071 [00:00<?, ?it/s]  0%|          | 98304/170498071 [00:00<03:01, 936887.88it/s]  1%|          | 884736/170498071 [00:00<00:35, 4714140.89it/s]  4%|▎         | 6389760/170498071 [00:00<00:06, 26860687.16it/s]  8%|▊         | 13926400/170498071 [00:00<00:03, 45555048.50it/s] 13%|█▎        | 22052864/170498071 [00:00<00:02, 58225973.99it/s] 17%|█▋        | 29556736/170498071 [00:00<00:02, 63829328.33it/s] 22%|██▏       | 37748736/170498071 [00:00<00:01, 69688093.88it/s] 27%|██▋       | 45350912/170498071 [00:00<00:01, 71637925.45it/s] 31%|███▏      | 53444608/170498071 [00:00<00:01, 74492182.91it/s] 36%|███▌      | 60915712/170498071 [00:01<00:01, 67348672.86it/s] 40%|███▉      | 67796992/170498071 [00:01<00:01, 64621550.50it/s] 44%|████▍     | 75563008/170498071 [00:01<00:01, 67337625.78it/s] 49%|████▉     | 83787776/170498071 [00:01<00:01, 71529222.06it/s] 54%|█████▎    | 91226112/170498071 [00:01<00:01, 72323995.96it/s] 58%|█████▊    | 99450880/170498071 [00:01<00:00, 75192748.51it/s] 63%|██████▎   | 107053056/170498071 [00:01<00:00, 74192523.21it/s] 67%|██████▋   | 114950144/170498071 [00:01<00:00, 75527106.52it/s] 72%|███████▏  | 122650624/170498071 [00:01<00:00, 75961436.02it/s] 77%|███████▋  | 130711552/170498071 [00:01<00:00, 77297445.06it/s] 81%|████████  | 138477568/170498071 [00:02<00:00, 75826406.57it/s] 86%|████████▌ | 146472960/170498071 [00:02<00:00, 76995808.27it/s] 90%|█████████ | 154206208/170498071 [00:02<00:00, 77079102.27it/s] 95%|█████████▌| 162430976/170498071 [00:02<00:00, 78608760.54it/s]100%|█████████▉| 170328064/170498071 [00:02<00:00, 77259766.34it/s]100%|██████████| 170498071/170498071 [00:02<00:00, 68394626.52it/s]
+Extracting ./data/cifar10/cifar-10-python.tar.gz to ./data/cifar10
+Files already downloaded and verified
+2026-06-04 11:17:36,181 pretrain.py[line:129] INFO Begin to pre-train teacher_model!
+2026-06-04 11:17:37,305 pretrain.py[line:42] INFO Epoch 0, Batch 0, Loss: 2.4872, Acc: 7.81%
+2026-06-04 11:17:53,216 pretrain.py[line:42] INFO Epoch 0, Batch 100, Loss: 1.6584, Acc: 29.24%
+2026-06-04 11:18:08,879 pretrain.py[line:42] INFO Epoch 1, Batch 0, Loss: 1.3449, Acc: 51.56%
+2026-06-04 11:18:25,135 pretrain.py[line:42] INFO Epoch 1, Batch 100, Loss: 1.3088, Acc: 47.50%
+2026-06-04 11:18:40,977 pretrain.py[line:42] INFO Epoch 2, Batch 0, Loss: 1.2012, Acc: 57.03%
+2026-06-04 11:18:57,488 pretrain.py[line:42] INFO Epoch 2, Batch 100, Loss: 1.2434, Acc: 55.63%
+2026-06-04 11:19:13,529 pretrain.py[line:42] INFO Epoch 3, Batch 0, Loss: 1.1972, Acc: 57.03%
+2026-06-04 11:19:30,219 pretrain.py[line:42] INFO Epoch 3, Batch 100, Loss: 1.0173, Acc: 61.15%
+2026-06-04 11:19:46,392 pretrain.py[line:42] INFO Epoch 4, Batch 0, Loss: 0.9800, Acc: 62.89%
+2026-06-04 11:20:03,191 pretrain.py[line:42] INFO Epoch 4, Batch 100, Loss: 1.0134, Acc: 66.39%
+2026-06-04 11:20:19,448 pretrain.py[line:42] INFO Epoch 5, Batch 0, Loss: 0.8339, Acc: 69.92%
+2026-06-04 11:20:36,263 pretrain.py[line:42] INFO Epoch 5, Batch 100, Loss: 0.7912, Acc: 70.34%
+2026-06-04 11:20:52,478 pretrain.py[line:42] INFO Epoch 6, Batch 0, Loss: 0.6540, Acc: 76.56%
+2026-06-04 11:21:09,269 pretrain.py[line:42] INFO Epoch 6, Batch 100, Loss: 0.8347, Acc: 73.86%
+2026-06-04 11:21:25,505 pretrain.py[line:42] INFO Epoch 7, Batch 0, Loss: 0.7075, Acc: 73.44%
+2026-06-04 11:21:42,326 pretrain.py[line:42] INFO Epoch 7, Batch 100, Loss: 0.7015, Acc: 76.00%
+2026-06-04 11:21:58,601 pretrain.py[line:42] INFO Epoch 8, Batch 0, Loss: 0.7086, Acc: 73.05%
+2026-06-04 11:22:15,489 pretrain.py[line:42] INFO Epoch 8, Batch 100, Loss: 0.6343, Acc: 78.33%
+2026-06-04 11:22:31,812 pretrain.py[line:42] INFO Epoch 9, Batch 0, Loss: 0.6725, Acc: 75.78%
+2026-06-04 11:22:48,674 pretrain.py[line:42] INFO Epoch 9, Batch 100, Loss: 0.5739, Acc: 80.10%
+2026-06-04 11:23:06,955 pretrain.py[line:48] INFO Epoch 9, teacher_model ACC: 0.7497
+2026-06-04 11:23:07,287 pretrain.py[line:42] INFO Epoch 10, Batch 0, Loss: 0.4917, Acc: 82.81%
+2026-06-04 11:23:24,112 pretrain.py[line:42] INFO Epoch 10, Batch 100, Loss: 0.4781, Acc: 81.87%
+2026-06-04 11:23:40,376 pretrain.py[line:42] INFO Epoch 11, Batch 0, Loss: 0.5232, Acc: 79.69%
+2026-06-04 11:23:57,231 pretrain.py[line:42] INFO Epoch 11, Batch 100, Loss: 0.4548, Acc: 83.67%
+2026-06-04 11:24:13,475 pretrain.py[line:42] INFO Epoch 12, Batch 0, Loss: 0.3565, Acc: 87.11%
+2026-06-04 11:24:30,314 pretrain.py[line:42] INFO Epoch 12, Batch 100, Loss: 0.4337, Acc: 85.07%
+2026-06-04 11:24:46,575 pretrain.py[line:42] INFO Epoch 13, Batch 0, Loss: 0.3947, Acc: 84.77%
+2026-06-04 11:25:03,357 pretrain.py[line:42] INFO Epoch 13, Batch 100, Loss: 0.3891, Acc: 86.55%
+2026-06-04 11:25:19,578 pretrain.py[line:42] INFO Epoch 14, Batch 0, Loss: 0.3058, Acc: 89.06%
+2026-06-04 11:25:36,437 pretrain.py[line:42] INFO Epoch 14, Batch 100, Loss: 0.3122, Acc: 87.91%
+2026-06-04 11:25:52,694 pretrain.py[line:42] INFO Epoch 15, Batch 0, Loss: 0.3527, Acc: 88.28%
+2026-06-04 11:26:09,560 pretrain.py[line:42] INFO Epoch 15, Batch 100, Loss: 0.3710, Acc: 88.77%
+2026-06-04 11:26:25,811 pretrain.py[line:42] INFO Epoch 16, Batch 0, Loss: 0.2092, Acc: 92.19%
+2026-06-04 11:26:42,630 pretrain.py[line:42] INFO Epoch 16, Batch 100, Loss: 0.3741, Acc: 90.42%
+2026-06-04 11:26:58,866 pretrain.py[line:42] INFO Epoch 17, Batch 0, Loss: 0.3029, Acc: 90.62%
+2026-06-04 11:27:15,710 pretrain.py[line:42] INFO Epoch 17, Batch 100, Loss: 0.2244, Acc: 91.17%
+2026-06-04 11:27:31,963 pretrain.py[line:42] INFO Epoch 18, Batch 0, Loss: 0.1854, Acc: 92.58%
+2026-06-04 11:27:48,779 pretrain.py[line:42] INFO Epoch 18, Batch 100, Loss: 0.2411, Acc: 92.06%
+2026-06-04 11:28:05,023 pretrain.py[line:42] INFO Epoch 19, Batch 0, Loss: 0.2102, Acc: 92.58%
+2026-06-04 11:28:21,842 pretrain.py[line:42] INFO Epoch 19, Batch 100, Loss: 0.1681, Acc: 93.25%
+2026-06-04 11:28:40,052 pretrain.py[line:48] INFO Epoch 19, teacher_model ACC: 0.8398
+2026-06-04 11:28:40,384 pretrain.py[line:42] INFO Epoch 20, Batch 0, Loss: 0.1794, Acc: 92.97%
+2026-06-04 11:28:57,190 pretrain.py[line:42] INFO Epoch 20, Batch 100, Loss: 0.1090, Acc: 93.73%
+2026-06-04 11:29:13,778 pretrain.py[line:42] INFO Epoch 21, Batch 0, Loss: 0.1738, Acc: 93.36%
+2026-06-04 11:29:31,029 pretrain.py[line:42] INFO Epoch 21, Batch 100, Loss: 0.1635, Acc: 94.67%
+2026-06-04 11:29:47,662 pretrain.py[line:42] INFO Epoch 22, Batch 0, Loss: 0.1206, Acc: 94.53%
+2026-06-04 11:30:04,882 pretrain.py[line:42] INFO Epoch 22, Batch 100, Loss: 0.1297, Acc: 95.25%
+2026-06-04 11:30:21,456 pretrain.py[line:42] INFO Epoch 23, Batch 0, Loss: 0.0782, Acc: 97.66%
+2026-06-04 11:30:38,612 pretrain.py[line:42] INFO Epoch 23, Batch 100, Loss: 0.0903, Acc: 95.97%
+2026-06-04 11:30:55,171 pretrain.py[line:42] INFO Epoch 24, Batch 0, Loss: 0.1205, Acc: 98.05%
+2026-06-04 11:31:12,300 pretrain.py[line:42] INFO Epoch 24, Batch 100, Loss: 0.0831, Acc: 96.52%
+2026-06-04 11:31:28,839 pretrain.py[line:42] INFO Epoch 25, Batch 0, Loss: 0.0646, Acc: 98.44%
+2026-06-04 11:31:45,916 pretrain.py[line:42] INFO Epoch 25, Batch 100, Loss: 0.1068, Acc: 96.97%
+2026-06-04 11:32:02,359 pretrain.py[line:42] INFO Epoch 26, Batch 0, Loss: 0.0620, Acc: 98.05%
+2026-06-04 11:32:19,349 pretrain.py[line:42] INFO Epoch 26, Batch 100, Loss: 0.1020, Acc: 97.18%
+2026-06-04 11:32:35,704 pretrain.py[line:42] INFO Epoch 27, Batch 0, Loss: 0.0830, Acc: 97.66%
+2026-06-04 11:32:52,589 pretrain.py[line:42] INFO Epoch 27, Batch 100, Loss: 0.1082, Acc: 97.25%
+2026-06-04 11:33:08,889 pretrain.py[line:42] INFO Epoch 28, Batch 0, Loss: 0.0764, Acc: 98.05%
+2026-06-04 11:33:25,762 pretrain.py[line:42] INFO Epoch 28, Batch 100, Loss: 0.0998, Acc: 97.38%
+2026-06-04 11:33:42,072 pretrain.py[line:42] INFO Epoch 29, Batch 0, Loss: 0.0679, Acc: 97.27%
+2026-06-04 11:33:58,984 pretrain.py[line:42] INFO Epoch 29, Batch 100, Loss: 0.0588, Acc: 97.72%
+2026-06-04 11:34:17,316 pretrain.py[line:48] INFO Epoch 29, teacher_model ACC: 0.8602
+2026-06-04 11:34:17,388 pretrain.py[line:51] INFO Finished training teacher_model and saved!
+2026-06-04 11:34:19,705 pretrain.py[line:135] INFO teacher_model ACC: 0.8602
+2026-06-04 11:34:19,705 pretrain.py[line:144] INFO Begin to pre-train student_model!
+2026-06-04 11:34:20,123 pretrain.py[line:85] INFO Epoch 0, Batch 0, Loss: 4.7652, Acc: 11.72%
+2026-06-04 11:34:31,087 pretrain.py[line:85] INFO Epoch 0, Batch 100, Loss: 3.1303, Acc: 35.78%
+2026-06-04 11:34:41,751 pretrain.py[line:85] INFO Epoch 1, Batch 0, Loss: 2.4955, Acc: 53.12%
+2026-06-04 11:34:52,668 pretrain.py[line:85] INFO Epoch 1, Batch 100, Loss: 1.9537, Acc: 60.35%
+2026-06-04 11:35:03,306 pretrain.py[line:85] INFO Epoch 2, Batch 0, Loss: 1.7333, Acc: 64.45%
+2026-06-04 11:35:14,226 pretrain.py[line:85] INFO Epoch 2, Batch 100, Loss: 1.4950, Acc: 70.39%
+2026-06-04 11:35:24,831 pretrain.py[line:85] INFO Epoch 3, Batch 0, Loss: 1.2184, Acc: 78.52%
+2026-06-04 11:35:35,721 pretrain.py[line:85] INFO Epoch 3, Batch 100, Loss: 0.9651, Acc: 77.40%
+2026-06-04 11:35:46,380 pretrain.py[line:85] INFO Epoch 4, Batch 0, Loss: 1.1593, Acc: 79.69%
+2026-06-04 11:35:57,293 pretrain.py[line:85] INFO Epoch 4, Batch 100, Loss: 0.9131, Acc: 80.86%
+2026-06-04 11:36:07,965 pretrain.py[line:85] INFO Epoch 5, Batch 0, Loss: 0.7644, Acc: 87.50%
+2026-06-04 11:36:18,859 pretrain.py[line:85] INFO Epoch 5, Batch 100, Loss: 0.7296, Acc: 83.73%
+2026-06-04 11:36:29,475 pretrain.py[line:85] INFO Epoch 6, Batch 0, Loss: 0.7263, Acc: 86.72%
+2026-06-04 11:36:40,369 pretrain.py[line:85] INFO Epoch 6, Batch 100, Loss: 0.7203, Acc: 86.00%
+2026-06-04 11:36:51,035 pretrain.py[line:85] INFO Epoch 7, Batch 0, Loss: 0.7401, Acc: 87.11%
+2026-06-04 11:37:01,941 pretrain.py[line:85] INFO Epoch 7, Batch 100, Loss: 0.5495, Acc: 87.69%
+2026-06-04 11:37:12,586 pretrain.py[line:85] INFO Epoch 8, Batch 0, Loss: 0.6086, Acc: 84.77%
+2026-06-04 11:37:23,490 pretrain.py[line:85] INFO Epoch 8, Batch 100, Loss: 0.4552, Acc: 89.26%
+2026-06-04 11:37:34,123 pretrain.py[line:85] INFO Epoch 9, Batch 0, Loss: 0.4538, Acc: 91.02%
+2026-06-04 11:37:45,008 pretrain.py[line:85] INFO Epoch 9, Batch 100, Loss: 0.4734, Acc: 90.73%
+2026-06-04 11:37:56,195 pretrain.py[line:91] INFO Epoch 9, student_model ACC: 0.8619
+2026-06-04 11:37:56,499 pretrain.py[line:85] INFO Epoch 10, Batch 0, Loss: 0.5110, Acc: 90.62%
+2026-06-04 11:38:07,316 pretrain.py[line:85] INFO Epoch 10, Batch 100, Loss: 0.2351, Acc: 91.97%
+2026-06-04 11:38:17,865 pretrain.py[line:85] INFO Epoch 11, Batch 0, Loss: 0.4741, Acc: 90.23%
+2026-06-04 11:38:28,699 pretrain.py[line:85] INFO Epoch 11, Batch 100, Loss: 0.4221, Acc: 92.77%
+2026-06-04 11:38:39,277 pretrain.py[line:85] INFO Epoch 12, Batch 0, Loss: 0.3640, Acc: 92.58%
+2026-06-04 11:38:50,135 pretrain.py[line:85] INFO Epoch 12, Batch 100, Loss: 0.3931, Acc: 93.87%
+2026-06-04 11:39:00,734 pretrain.py[line:85] INFO Epoch 13, Batch 0, Loss: 0.3059, Acc: 94.14%
+2026-06-04 11:39:11,617 pretrain.py[line:85] INFO Epoch 13, Batch 100, Loss: 0.3398, Acc: 94.52%
+2026-06-04 11:39:22,197 pretrain.py[line:85] INFO Epoch 14, Batch 0, Loss: 0.3337, Acc: 94.53%
+2026-06-04 11:39:33,051 pretrain.py[line:85] INFO Epoch 14, Batch 100, Loss: 0.3114, Acc: 94.71%
+2026-06-04 11:39:43,371 pretrain.py[line:94] INFO student_model Saved
+2026-06-04 11:39:44,209 pretrain.py[line:150] INFO student_model ACC: 0.9028
+2026-06-04 11:39:44,210 pretrain.py[line:162] INFO Poisoner epoch: 1 starts...
+2026-06-04 11:40:31,173 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:40:31,174 pretrain.py[line:185] INFO teacher_model ASR: 0.9251
+2026-06-04 11:40:32,872 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:40:32,873 pretrain.py[line:189] INFO student_model ASR: 0.9923
+2026-06-04 11:40:32,873 pretrain.py[line:162] INFO Poisoner epoch: 2 starts...
+2026-06-04 11:41:19,779 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:41:19,779 pretrain.py[line:185] INFO teacher_model ASR: 0.9434
+2026-06-04 11:41:21,450 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:41:21,450 pretrain.py[line:189] INFO student_model ASR: 0.9927
+2026-06-04 11:41:21,450 pretrain.py[line:162] INFO Poisoner epoch: 3 starts...
+2026-06-04 11:42:08,477 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:42:08,477 pretrain.py[line:185] INFO teacher_model ASR: 0.9471
+2026-06-04 11:42:10,172 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:42:10,172 pretrain.py[line:189] INFO student_model ASR: 0.9932
+2026-06-04 11:42:10,172 pretrain.py[line:162] INFO Poisoner epoch: 4 starts...
+2026-06-04 11:42:57,103 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:42:57,103 pretrain.py[line:185] INFO teacher_model ASR: 0.9516
+2026-06-04 11:42:58,775 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:42:58,775 pretrain.py[line:189] INFO student_model ASR: 0.9931
+2026-06-04 11:42:58,776 pretrain.py[line:162] INFO Poisoner epoch: 5 starts...
+2026-06-04 11:43:45,759 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:43:45,759 pretrain.py[line:185] INFO teacher_model ASR: 0.9543
+2026-06-04 11:43:47,454 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:43:47,454 pretrain.py[line:189] INFO student_model ASR: 0.9936
+2026-06-04 11:43:47,454 pretrain.py[line:162] INFO Poisoner epoch: 6 starts...
+2026-06-04 11:44:34,480 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:44:34,480 pretrain.py[line:185] INFO teacher_model ASR: 0.9571
+2026-06-04 11:44:36,174 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:44:36,175 pretrain.py[line:189] INFO student_model ASR: 0.9937
+2026-06-04 11:44:36,175 pretrain.py[line:162] INFO Poisoner epoch: 7 starts...
+2026-06-04 11:45:23,134 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:45:23,134 pretrain.py[line:185] INFO teacher_model ASR: 0.9574
+2026-06-04 11:45:24,780 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:45:24,781 pretrain.py[line:189] INFO student_model ASR: 0.9944
+2026-06-04 11:45:24,781 pretrain.py[line:162] INFO Poisoner epoch: 8 starts...
+2026-06-04 11:46:11,778 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:46:11,778 pretrain.py[line:185] INFO teacher_model ASR: 0.9579
+2026-06-04 11:46:13,468 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:46:13,468 pretrain.py[line:189] INFO student_model ASR: 0.9939
+2026-06-04 11:46:13,468 pretrain.py[line:162] INFO Poisoner epoch: 9 starts...
+2026-06-04 11:47:00,461 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:47:00,461 pretrain.py[line:185] INFO teacher_model ASR: 0.9589
+2026-06-04 11:47:02,175 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:47:02,175 pretrain.py[line:189] INFO student_model ASR: 0.9943
+2026-06-04 11:47:02,176 pretrain.py[line:162] INFO Poisoner epoch: 10 starts...
+2026-06-04 11:47:49,257 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:47:49,257 pretrain.py[line:185] INFO teacher_model ASR: 0.9597
+2026-06-04 11:47:50,946 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:47:50,946 pretrain.py[line:189] INFO student_model ASR: 0.9943
+2026-06-04 11:47:50,946 pretrain.py[line:162] INFO Poisoner epoch: 11 starts...
+2026-06-04 11:48:37,941 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:48:37,941 pretrain.py[line:185] INFO teacher_model ASR: 0.9614
+2026-06-04 11:48:39,641 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:48:39,641 pretrain.py[line:189] INFO student_model ASR: 0.9942
+2026-06-04 11:48:39,641 pretrain.py[line:162] INFO Poisoner epoch: 12 starts...
+2026-06-04 11:49:26,642 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:49:26,642 pretrain.py[line:185] INFO teacher_model ASR: 0.9611
+2026-06-04 11:49:28,304 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:49:28,305 pretrain.py[line:189] INFO student_model ASR: 0.9948
+2026-06-04 11:49:28,305 pretrain.py[line:162] INFO Poisoner epoch: 13 starts...
+2026-06-04 11:50:15,471 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:50:15,471 pretrain.py[line:185] INFO teacher_model ASR: 0.9613
+2026-06-04 11:50:17,150 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:50:17,150 pretrain.py[line:189] INFO student_model ASR: 0.9948
+2026-06-04 11:50:17,150 pretrain.py[line:162] INFO Poisoner epoch: 14 starts...
+2026-06-04 11:51:04,171 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:51:04,171 pretrain.py[line:185] INFO teacher_model ASR: 0.9621
+2026-06-04 11:51:05,862 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:51:05,863 pretrain.py[line:189] INFO student_model ASR: 0.9947
+2026-06-04 11:51:05,863 pretrain.py[line:162] INFO Poisoner epoch: 15 starts...
+2026-06-04 11:51:52,842 pretrain.py[line:184] INFO teacher_model ACC: 0.8602
+2026-06-04 11:51:52,842 pretrain.py[line:185] INFO teacher_model ASR: 0.9621
+2026-06-04 11:51:54,497 pretrain.py[line:188] INFO student_model ACC: 0.9028
+2026-06-04 11:51:54,498 pretrain.py[line:189] INFO student_model ASR: 0.9947
+2026-06-04 11:51:54,498 pretrain.py[line:197] INFO poisoner_0.1 Saved
+############ STAGE 2/3 — SCAR attack (bake dormant backdoor into teacher) ############
+/usr/local/lib/python3.11/dist-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+2026-06-04 11:51:57,316 utils.py[line:26] INFO Current log file is attack/cifar10/resnet50/resnet18/2026-06-04-1151.log
+2026-06-04 11:51:57,316 SCAR.py[line:40] INFO gpu_id:0
+2026-06-04 11:51:57,316 SCAR.py[line:40] INFO teacher_model:resnet50
+2026-06-04 11:51:57,316 SCAR.py[line:40] INFO student_model:resnet18
+2026-06-04 11:51:57,316 SCAR.py[line:40] INFO dataset:cifar10
+2026-06-04 11:51:57,316 SCAR.py[line:40] INFO num_epochs:20
+2026-06-04 11:51:57,316 SCAR.py[line:40] INFO inner_steps:8
+2026-06-04 11:51:57,316 SCAR.py[line:40] INFO target_label:0
+2026-06-04 11:51:57,317 SCAR.py[line:40] INFO batch_num:40
+2026-06-04 11:51:57,317 SCAR.py[line:40] INFO batch_size:128
+2026-06-04 11:51:57,317 SCAR.py[line:40] INFO K:40
+2026-06-04 11:51:57,317 SCAR.py[line:40] INFO lr:0.001
+2026-06-04 11:51:57,317 SCAR.py[line:40] INFO epsilon:0.1
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+2026-06-04 11:52:05,088 SCAR.py[line:72] INFO teacher_model ACC: 0.8603
+2026-06-04 11:52:05,088 SCAR.py[line:73] INFO teacher_model ASR: 0.9621
+2026-06-04 11:52:05,089 SCAR.py[line:82] INFO Epoch: 1 starts...
+2026-06-04 11:52:05,167 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 11:55:08,017 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 11:57:50,897 SCAR.py[line:174] INFO Epoch [1/20], Batch [39/391]
+2026-06-04 11:57:50,917 SCAR.py[line:175] INFO teacher_ce_clean: 1.8761, teacher_ce_poisoned: 1.8634
+2026-06-04 11:57:50,918 SCAR.py[line:176] INFO student_ce_clean: 0.3908, student_ce_poisoned: 0.3302
+2026-06-04 11:57:57,576 SCAR.py[line:182] INFO teacher_model ACC: 0.3390, teacher_model ASR: 0.0010
+2026-06-04 11:57:57,576 SCAR.py[line:183] INFO student_model ACC: 0.8356, student_model ASR: 0.8873
+2026-06-04 11:57:57,576 SCAR.py[line:82] INFO Epoch: 2 starts...
+2026-06-04 11:57:57,654 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 12:01:00,756 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 12:03:43,058 SCAR.py[line:174] INFO Epoch [2/20], Batch [39/391]
+2026-06-04 12:03:43,059 SCAR.py[line:175] INFO teacher_ce_clean: 1.5947, teacher_ce_poisoned: 1.6982
+2026-06-04 12:03:43,059 SCAR.py[line:176] INFO student_ce_clean: 0.7976, student_ce_poisoned: 1.3344
+2026-06-04 12:03:49,666 SCAR.py[line:182] INFO teacher_model ACC: 0.3509, teacher_model ASR: 0.0138
+2026-06-04 12:03:49,666 SCAR.py[line:183] INFO student_model ACC: 0.7870, student_model ASR: 0.7194
+2026-06-04 12:03:49,667 SCAR.py[line:82] INFO Epoch: 3 starts...
+2026-06-04 12:03:49,726 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 12:06:52,144 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 12:09:34,366 SCAR.py[line:174] INFO Epoch [3/20], Batch [39/391]
+2026-06-04 12:09:34,370 SCAR.py[line:175] INFO teacher_ce_clean: 1.4955, teacher_ce_poisoned: 1.5516
+2026-06-04 12:09:34,370 SCAR.py[line:176] INFO student_ce_clean: 0.7941, student_ce_poisoned: 0.9013
+2026-06-04 12:09:40,944 SCAR.py[line:182] INFO teacher_model ACC: 0.4212, teacher_model ASR: 0.0181
+2026-06-04 12:09:40,944 SCAR.py[line:183] INFO student_model ACC: 0.7742, student_model ASR: 0.8762
+2026-06-04 12:09:40,944 SCAR.py[line:82] INFO Epoch: 4 starts...
+2026-06-04 12:09:41,003 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 12:12:43,140 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 12:15:25,225 SCAR.py[line:174] INFO Epoch [4/20], Batch [39/391]
+2026-06-04 12:15:25,231 SCAR.py[line:175] INFO teacher_ce_clean: 1.5536, teacher_ce_poisoned: 1.6328
+2026-06-04 12:15:25,231 SCAR.py[line:176] INFO student_ce_clean: 0.9082, student_ce_poisoned: 2.2821
+2026-06-04 12:15:31,815 SCAR.py[line:182] INFO teacher_model ACC: 0.4455, teacher_model ASR: 0.0500
+2026-06-04 12:15:31,815 SCAR.py[line:183] INFO student_model ACC: 0.7631, student_model ASR: 0.2317
+2026-06-04 12:15:31,815 SCAR.py[line:82] INFO Epoch: 5 starts...
+2026-06-04 12:15:31,874 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 12:18:33,878 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 12:21:16,117 SCAR.py[line:174] INFO Epoch [5/20], Batch [39/391]
+2026-06-04 12:21:16,117 SCAR.py[line:175] INFO teacher_ce_clean: 1.3693, teacher_ce_poisoned: 1.4677
+2026-06-04 12:21:16,117 SCAR.py[line:176] INFO student_ce_clean: 0.8145, student_ce_poisoned: 1.3054
+2026-06-04 12:21:22,664 SCAR.py[line:182] INFO teacher_model ACC: 0.4356, teacher_model ASR: 0.0242
+2026-06-04 12:21:22,664 SCAR.py[line:183] INFO student_model ACC: 0.7647, student_model ASR: 0.6233
+2026-06-04 12:21:22,664 SCAR.py[line:82] INFO Epoch: 6 starts...
+2026-06-04 12:21:22,723 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 12:24:25,064 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 12:27:08,385 SCAR.py[line:174] INFO Epoch [6/20], Batch [39/391]
+2026-06-04 12:27:08,389 SCAR.py[line:175] INFO teacher_ce_clean: 1.4147, teacher_ce_poisoned: 1.4625
+2026-06-04 12:27:08,389 SCAR.py[line:176] INFO student_ce_clean: 0.7040, student_ce_poisoned: 1.4053
+2026-06-04 12:27:15,138 SCAR.py[line:182] INFO teacher_model ACC: 0.5054, teacher_model ASR: 0.0082
+2026-06-04 12:27:15,139 SCAR.py[line:183] INFO student_model ACC: 0.7926, student_model ASR: 0.6146
+2026-06-04 12:27:15,139 SCAR.py[line:82] INFO Epoch: 7 starts...
+2026-06-04 12:27:15,198 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 12:30:18,017 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 12:33:00,936 SCAR.py[line:174] INFO Epoch [7/20], Batch [39/391]
+2026-06-04 12:33:00,939 SCAR.py[line:175] INFO teacher_ce_clean: 1.2726, teacher_ce_poisoned: 1.2797
+2026-06-04 12:33:00,939 SCAR.py[line:176] INFO student_ce_clean: 0.7814, student_ce_poisoned: 2.1140
+2026-06-04 12:33:07,462 SCAR.py[line:182] INFO teacher_model ACC: 0.5072, teacher_model ASR: 0.0681
+2026-06-04 12:33:07,463 SCAR.py[line:183] INFO student_model ACC: 0.7458, student_model ASR: 0.2797
+2026-06-04 12:33:07,463 SCAR.py[line:82] INFO Epoch: 8 starts...
+2026-06-04 12:33:07,522 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 12:36:09,906 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 12:38:51,924 SCAR.py[line:174] INFO Epoch [8/20], Batch [39/391]
+2026-06-04 12:38:51,929 SCAR.py[line:175] INFO teacher_ce_clean: 1.0491, teacher_ce_poisoned: 1.1588
+2026-06-04 12:38:51,929 SCAR.py[line:176] INFO student_ce_clean: 0.6822, student_ce_poisoned: 1.3006
+2026-06-04 12:38:58,538 SCAR.py[line:182] INFO teacher_model ACC: 0.5601, teacher_model ASR: 0.0668
+2026-06-04 12:38:58,539 SCAR.py[line:183] INFO student_model ACC: 0.7878, student_model ASR: 0.5789
+2026-06-04 12:38:58,539 SCAR.py[line:82] INFO Epoch: 9 starts...
+2026-06-04 12:38:58,598 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 12:42:01,701 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 12:44:44,108 SCAR.py[line:174] INFO Epoch [9/20], Batch [39/391]
+2026-06-04 12:44:44,109 SCAR.py[line:175] INFO teacher_ce_clean: 1.2444, teacher_ce_poisoned: 1.3559
+2026-06-04 12:44:44,109 SCAR.py[line:176] INFO student_ce_clean: 0.7026, student_ce_poisoned: 1.0947
+2026-06-04 12:44:50,702 SCAR.py[line:182] INFO teacher_model ACC: 0.5137, teacher_model ASR: 0.0808
+2026-06-04 12:44:50,702 SCAR.py[line:183] INFO student_model ACC: 0.7844, student_model ASR: 0.7403
+2026-06-04 12:44:50,702 SCAR.py[line:82] INFO Epoch: 10 starts...
+2026-06-04 12:44:50,761 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 12:47:54,338 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 12:50:36,912 SCAR.py[line:174] INFO Epoch [10/20], Batch [39/391]
+2026-06-04 12:50:36,912 SCAR.py[line:175] INFO teacher_ce_clean: 1.0351, teacher_ce_poisoned: 1.2078
+2026-06-04 12:50:36,912 SCAR.py[line:176] INFO student_ce_clean: 0.7105, student_ce_poisoned: 2.0035
+2026-06-04 12:50:43,458 SCAR.py[line:182] INFO teacher_model ACC: 0.5534, teacher_model ASR: 0.0394
+2026-06-04 12:50:43,458 SCAR.py[line:183] INFO student_model ACC: 0.7649, student_model ASR: 0.4217
+2026-06-04 12:50:43,459 SCAR.py[line:82] INFO Epoch: 11 starts...
+2026-06-04 12:50:43,518 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 12:53:46,035 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 12:56:28,284 SCAR.py[line:174] INFO Epoch [11/20], Batch [39/391]
+2026-06-04 12:56:28,284 SCAR.py[line:175] INFO teacher_ce_clean: 1.0336, teacher_ce_poisoned: 1.1044
+2026-06-04 12:56:28,284 SCAR.py[line:176] INFO student_ce_clean: 0.6800, student_ce_poisoned: 1.7129
+2026-06-04 12:56:34,829 SCAR.py[line:182] INFO teacher_model ACC: 0.5725, teacher_model ASR: 0.0458
+2026-06-04 12:56:34,830 SCAR.py[line:183] INFO student_model ACC: 0.7957, student_model ASR: 0.4731
+2026-06-04 12:56:34,830 SCAR.py[line:82] INFO Epoch: 12 starts...
+2026-06-04 12:56:34,890 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 12:59:37,608 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 13:02:20,056 SCAR.py[line:174] INFO Epoch [12/20], Batch [39/391]
+2026-06-04 13:02:20,057 SCAR.py[line:175] INFO teacher_ce_clean: 1.1805, teacher_ce_poisoned: 1.2520
+2026-06-04 13:02:20,057 SCAR.py[line:176] INFO student_ce_clean: 0.7052, student_ce_poisoned: 1.4096
+2026-06-04 13:02:26,642 SCAR.py[line:182] INFO teacher_model ACC: 0.5985, teacher_model ASR: 0.0393
+2026-06-04 13:02:26,642 SCAR.py[line:183] INFO student_model ACC: 0.7833, student_model ASR: 0.6123
+2026-06-04 13:02:26,643 SCAR.py[line:82] INFO Epoch: 13 starts...
+2026-06-04 13:02:26,702 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 13:05:29,744 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 13:08:12,195 SCAR.py[line:174] INFO Epoch [13/20], Batch [39/391]
+2026-06-04 13:08:12,202 SCAR.py[line:175] INFO teacher_ce_clean: 0.9494, teacher_ce_poisoned: 1.0728
+2026-06-04 13:08:12,202 SCAR.py[line:176] INFO student_ce_clean: 0.6269, student_ce_poisoned: 1.9244
+2026-06-04 13:08:18,777 SCAR.py[line:182] INFO teacher_model ACC: 0.6202, teacher_model ASR: 0.0450
+2026-06-04 13:08:18,777 SCAR.py[line:183] INFO student_model ACC: 0.7987, student_model ASR: 0.3912
+2026-06-04 13:08:18,778 SCAR.py[line:82] INFO Epoch: 14 starts...
+2026-06-04 13:08:18,837 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 13:11:22,386 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 13:14:04,498 SCAR.py[line:174] INFO Epoch [14/20], Batch [39/391]
+2026-06-04 13:14:04,498 SCAR.py[line:175] INFO teacher_ce_clean: 0.9899, teacher_ce_poisoned: 1.1006
+2026-06-04 13:14:04,498 SCAR.py[line:176] INFO student_ce_clean: 0.6963, student_ce_poisoned: 2.2369
+2026-06-04 13:14:11,092 SCAR.py[line:182] INFO teacher_model ACC: 0.6646, teacher_model ASR: 0.0350
+2026-06-04 13:14:11,092 SCAR.py[line:183] INFO student_model ACC: 0.7868, student_model ASR: 0.2584
+2026-06-04 13:14:11,093 SCAR.py[line:82] INFO Epoch: 15 starts...
+2026-06-04 13:14:11,152 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 13:17:14,822 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 13:19:57,489 SCAR.py[line:174] INFO Epoch [15/20], Batch [39/391]
+2026-06-04 13:19:57,490 SCAR.py[line:175] INFO teacher_ce_clean: 0.9077, teacher_ce_poisoned: 0.9629
+2026-06-04 13:19:57,490 SCAR.py[line:176] INFO student_ce_clean: 0.6119, student_ce_poisoned: 1.8688
+2026-06-04 13:20:04,052 SCAR.py[line:182] INFO teacher_model ACC: 0.6749, teacher_model ASR: 0.0286
+2026-06-04 13:20:04,053 SCAR.py[line:183] INFO student_model ACC: 0.7897, student_model ASR: 0.5213
+2026-06-04 13:20:04,053 SCAR.py[line:82] INFO Epoch: 16 starts...
+2026-06-04 13:20:04,112 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 13:23:08,956 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 13:25:52,940 SCAR.py[line:174] INFO Epoch [16/20], Batch [39/391]
+2026-06-04 13:25:52,942 SCAR.py[line:175] INFO teacher_ce_clean: 0.8275, teacher_ce_poisoned: 0.9441
+2026-06-04 13:25:52,942 SCAR.py[line:176] INFO student_ce_clean: 0.5768, student_ce_poisoned: 1.8759
+2026-06-04 13:25:59,630 SCAR.py[line:182] INFO teacher_model ACC: 0.6802, teacher_model ASR: 0.0539
+2026-06-04 13:25:59,630 SCAR.py[line:183] INFO student_model ACC: 0.7830, student_model ASR: 0.3727
+2026-06-04 13:25:59,631 SCAR.py[line:82] INFO Epoch: 17 starts...
+2026-06-04 13:25:59,690 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 13:29:03,482 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 13:31:46,099 SCAR.py[line:174] INFO Epoch [17/20], Batch [39/391]
+2026-06-04 13:31:46,101 SCAR.py[line:175] INFO teacher_ce_clean: 0.9803, teacher_ce_poisoned: 1.0363
+2026-06-04 13:31:46,101 SCAR.py[line:176] INFO student_ce_clean: 0.7529, student_ce_poisoned: 1.9287
+2026-06-04 13:31:52,643 SCAR.py[line:182] INFO teacher_model ACC: 0.6973, teacher_model ASR: 0.0432
+2026-06-04 13:31:52,643 SCAR.py[line:183] INFO student_model ACC: 0.8008, student_model ASR: 0.3561
+2026-06-04 13:31:52,644 SCAR.py[line:82] INFO Epoch: 18 starts...
+2026-06-04 13:31:52,703 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 13:34:55,651 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 13:37:37,672 SCAR.py[line:174] INFO Epoch [18/20], Batch [39/391]
+2026-06-04 13:37:37,676 SCAR.py[line:175] INFO teacher_ce_clean: 0.7794, teacher_ce_poisoned: 0.8829
+2026-06-04 13:37:37,676 SCAR.py[line:176] INFO student_ce_clean: 0.5623, student_ce_poisoned: 1.5761
+2026-06-04 13:37:44,195 SCAR.py[line:182] INFO teacher_model ACC: 0.7019, teacher_model ASR: 0.0412
+2026-06-04 13:37:44,195 SCAR.py[line:183] INFO student_model ACC: 0.7914, student_model ASR: 0.4931
+2026-06-04 13:37:44,195 SCAR.py[line:82] INFO Epoch: 19 starts...
+2026-06-04 13:37:44,254 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 13:40:47,549 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 13:43:30,260 SCAR.py[line:174] INFO Epoch [19/20], Batch [39/391]
+2026-06-04 13:43:30,260 SCAR.py[line:175] INFO teacher_ce_clean: 0.8332, teacher_ce_poisoned: 0.8703
+2026-06-04 13:43:30,261 SCAR.py[line:176] INFO student_ce_clean: 0.6125, student_ce_poisoned: 1.8903
+2026-06-04 13:43:36,858 SCAR.py[line:182] INFO teacher_model ACC: 0.6996, teacher_model ASR: 0.0500
+2026-06-04 13:43:36,859 SCAR.py[line:183] INFO student_model ACC: 0.7841, student_model ASR: 0.5101
+2026-06-04 13:43:36,859 SCAR.py[line:82] INFO Epoch: 20 starts...
+2026-06-04 13:43:36,918 SCAR.py[line:88] INFO Inner optimization ...
+2026-06-04 13:46:40,580 SCAR.py[line:106] INFO Outer optimization ...
+2026-06-04 13:49:22,913 SCAR.py[line:174] INFO Epoch [20/20], Batch [39/391]
+2026-06-04 13:49:22,918 SCAR.py[line:175] INFO teacher_ce_clean: 0.8226, teacher_ce_poisoned: 0.8811
+2026-06-04 13:49:22,918 SCAR.py[line:176] INFO student_ce_clean: 0.6294, student_ce_poisoned: 2.1360
+2026-06-04 13:49:29,499 SCAR.py[line:182] INFO teacher_model ACC: 0.7072, teacher_model ASR: 0.0482
+2026-06-04 13:49:29,500 SCAR.py[line:183] INFO student_model ACC: 0.7879, student_model ASR: 0.3349
+2026-06-04 13:49:29,556 SCAR.py[line:188] INFO teacher_model: acc_0.7072_asr_0.0482.pth saved
+2026-06-04 13:49:29,557 SCAR.py[line:193] INFO Completed training teacher_model!
+############ STAGE 3/3 — distill victim student=mobilenetv2 & measure ASR ############
+/usr/local/lib/python3.11/dist-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+2026-06-04 13:49:31,931 utils.py[line:26] INFO Current log file is distillation/cifar10/response/resnet50/mobilenetv2/2026-06-04-1349.log
+2026-06-04 13:49:31,931 test_distillation.py[line:35] INFO gpu_id:0
+2026-06-04 13:49:31,932 test_distillation.py[line:35] INFO dl_method:response
+2026-06-04 13:49:31,932 test_distillation.py[line:35] INFO teacher_model:resnet50
+2026-06-04 13:49:31,932 test_distillation.py[line:35] INFO surrogate_model:resnet18
+2026-06-04 13:49:31,932 test_distillation.py[line:35] INFO student_model:mobilenetv2
+2026-06-04 13:49:31,932 test_distillation.py[line:35] INFO dataset:cifar10
+2026-06-04 13:49:31,932 test_distillation.py[line:35] INFO target_label:0
+2026-06-04 13:49:31,932 test_distillation.py[line:35] INFO batch_size:128
+2026-06-04 13:49:31,932 test_distillation.py[line:35] INFO delta:1
+2026-06-04 13:49:31,932 test_distillation.py[line:35] INFO epsilon:0.1
+2026-06-04 13:49:31,932 test_distillation.py[line:43] INFO teacher_path: attack/cifar10/resnet50/resnet18/ckp/acc_0.7072_asr_0.0482.pth
+2026-06-04 13:49:31,932 test_distillation.py[line:44] INFO poisoner_path: pretrain/cifar10/resnet50/poisoner_0.1.pth
+Files already downloaded and verified
+Files already downloaded and verified
+2026-06-04 13:49:38,204 test_distillation.py[line:60] INFO teacher_model ACC: 0.7072
+2026-06-04 13:49:38,204 test_distillation.py[line:61] INFO teacher_model ASR: 0.0482
+2026-06-04 13:49:38,230 distillation.py[line:39] INFO Epoch: 1 starts...
+2026-06-04 13:50:04,550 distillation.py[line:60] INFO student_model ACC: 0.5953
+2026-06-04 13:50:04,550 distillation.py[line:61] INFO student_model ASR: 0.0256
+2026-06-04 13:50:04,550 distillation.py[line:39] INFO Epoch: 2 starts...
+2026-06-04 13:50:30,582 distillation.py[line:60] INFO student_model ACC: 0.6935
+2026-06-04 13:50:30,582 distillation.py[line:61] INFO student_model ASR: 0.0968
+2026-06-04 13:50:30,582 distillation.py[line:39] INFO Epoch: 3 starts...
+2026-06-04 13:50:56,688 distillation.py[line:60] INFO student_model ACC: 0.7318
+2026-06-04 13:50:56,688 distillation.py[line:61] INFO student_model ASR: 0.1442
+2026-06-04 13:50:56,688 distillation.py[line:39] INFO Epoch: 4 starts...
+2026-06-04 13:51:22,851 distillation.py[line:60] INFO student_model ACC: 0.7450
+2026-06-04 13:51:22,851 distillation.py[line:61] INFO student_model ASR: 0.3090
+2026-06-04 13:51:22,851 distillation.py[line:39] INFO Epoch: 5 starts...
+2026-06-04 13:51:48,779 distillation.py[line:60] INFO student_model ACC: 0.7513
+2026-06-04 13:51:48,780 distillation.py[line:61] INFO student_model ASR: 0.4223
+2026-06-04 13:51:48,780 distillation.py[line:39] INFO Epoch: 6 starts...
+2026-06-04 13:52:14,791 distillation.py[line:60] INFO student_model ACC: 0.7554
+2026-06-04 13:52:14,791 distillation.py[line:61] INFO student_model ASR: 0.2853
+2026-06-04 13:52:14,791 distillation.py[line:39] INFO Epoch: 7 starts...
+2026-06-04 13:52:40,859 distillation.py[line:60] INFO student_model ACC: 0.7642
+2026-06-04 13:52:40,860 distillation.py[line:61] INFO student_model ASR: 0.3392
+2026-06-04 13:52:40,860 distillation.py[line:39] INFO Epoch: 8 starts...
+2026-06-04 13:53:06,975 distillation.py[line:60] INFO student_model ACC: 0.7907
+2026-06-04 13:53:06,975 distillation.py[line:61] INFO student_model ASR: 0.2202
+2026-06-04 13:53:06,975 distillation.py[line:39] INFO Epoch: 9 starts...
+2026-06-04 13:53:33,125 distillation.py[line:60] INFO student_model ACC: 0.8024
+2026-06-04 13:53:33,125 distillation.py[line:61] INFO student_model ASR: 0.4347
+2026-06-04 13:53:33,125 distillation.py[line:39] INFO Epoch: 10 starts...
+2026-06-04 13:53:59,311 distillation.py[line:60] INFO student_model ACC: 0.8022
+2026-06-04 13:53:59,311 distillation.py[line:61] INFO student_model ASR: 0.4289
+2026-06-04 13:53:59,311 distillation.py[line:39] INFO Epoch: 11 starts...
+2026-06-04 13:54:25,438 distillation.py[line:60] INFO student_model ACC: 0.7830
+2026-06-04 13:54:25,438 distillation.py[line:61] INFO student_model ASR: 0.5807
+2026-06-04 13:54:25,438 distillation.py[line:39] INFO Epoch: 12 starts...
+2026-06-04 13:54:51,579 distillation.py[line:60] INFO student_model ACC: 0.8040
+2026-06-04 13:54:51,579 distillation.py[line:61] INFO student_model ASR: 0.2587
+2026-06-04 13:54:51,579 distillation.py[line:39] INFO Epoch: 13 starts...
+2026-06-04 13:55:17,673 distillation.py[line:60] INFO student_model ACC: 0.8043
+2026-06-04 13:55:17,673 distillation.py[line:61] INFO student_model ASR: 0.4093
+2026-06-04 13:55:17,673 distillation.py[line:39] INFO Epoch: 14 starts...
+2026-06-04 13:55:43,822 distillation.py[line:60] INFO student_model ACC: 0.7967
+2026-06-04 13:55:43,823 distillation.py[line:61] INFO student_model ASR: 0.6370
+2026-06-04 13:55:43,823 distillation.py[line:39] INFO Epoch: 15 starts...
+2026-06-04 13:56:09,997 distillation.py[line:60] INFO student_model ACC: 0.8208
+2026-06-04 13:56:09,997 distillation.py[line:61] INFO student_model ASR: 0.3514
+2026-06-04 13:56:09,997 distillation.py[line:39] INFO Epoch: 16 starts...
+2026-06-04 13:56:35,973 distillation.py[line:60] INFO student_model ACC: 0.8206
+2026-06-04 13:56:35,973 distillation.py[line:61] INFO student_model ASR: 0.3649
+2026-06-04 13:56:35,973 distillation.py[line:39] INFO Epoch: 17 starts...
+2026-06-04 13:57:02,028 distillation.py[line:60] INFO student_model ACC: 0.8143
+2026-06-04 13:57:02,028 distillation.py[line:61] INFO student_model ASR: 0.4312
+2026-06-04 13:57:02,028 distillation.py[line:39] INFO Epoch: 18 starts...
+2026-06-04 13:57:28,142 distillation.py[line:60] INFO student_model ACC: 0.8290
+2026-06-04 13:57:28,142 distillation.py[line:61] INFO student_model ASR: 0.5081
+2026-06-04 13:57:28,142 distillation.py[line:39] INFO Epoch: 19 starts...
+2026-06-04 13:57:54,294 distillation.py[line:60] INFO student_model ACC: 0.8217
+2026-06-04 13:57:54,294 distillation.py[line:61] INFO student_model ASR: 0.2273
+2026-06-04 13:57:54,294 distillation.py[line:39] INFO Epoch: 20 starts...
+2026-06-04 13:58:20,439 distillation.py[line:60] INFO student_model ACC: 0.8299
+2026-06-04 13:58:20,439 distillation.py[line:61] INFO student_model ASR: 0.5434
+2026-06-04 13:58:20,439 distillation.py[line:39] INFO Epoch: 21 starts...
+2026-06-04 13:58:46,573 distillation.py[line:60] INFO student_model ACC: 0.8392
+2026-06-04 13:58:46,574 distillation.py[line:61] INFO student_model ASR: 0.4830
+2026-06-04 13:58:46,574 distillation.py[line:39] INFO Epoch: 22 starts...
+2026-06-04 13:59:12,747 distillation.py[line:60] INFO student_model ACC: 0.8390
+2026-06-04 13:59:12,747 distillation.py[line:61] INFO student_model ASR: 0.6209
+2026-06-04 13:59:12,747 distillation.py[line:39] INFO Epoch: 23 starts...
+2026-06-04 13:59:38,924 distillation.py[line:60] INFO student_model ACC: 0.8380
+2026-06-04 13:59:38,924 distillation.py[line:61] INFO student_model ASR: 0.5533
+2026-06-04 13:59:38,924 distillation.py[line:39] INFO Epoch: 24 starts...
+2026-06-04 14:00:05,125 distillation.py[line:60] INFO student_model ACC: 0.8424
+2026-06-04 14:00:05,126 distillation.py[line:61] INFO student_model ASR: 0.4841
+2026-06-04 14:00:05,126 distillation.py[line:39] INFO Epoch: 25 starts...
+2026-06-04 14:00:31,147 distillation.py[line:60] INFO student_model ACC: 0.8420
+2026-06-04 14:00:31,148 distillation.py[line:61] INFO student_model ASR: 0.5414
+2026-06-04 14:00:31,148 distillation.py[line:39] INFO Epoch: 26 starts...
+2026-06-04 14:00:57,236 distillation.py[line:60] INFO student_model ACC: 0.8431
+2026-06-04 14:00:57,237 distillation.py[line:61] INFO student_model ASR: 0.5753
+2026-06-04 14:00:57,237 distillation.py[line:39] INFO Epoch: 27 starts...
+2026-06-04 14:01:23,406 distillation.py[line:60] INFO student_model ACC: 0.8450
+2026-06-04 14:01:23,406 distillation.py[line:61] INFO student_model ASR: 0.5984
+2026-06-04 14:01:23,406 distillation.py[line:39] INFO Epoch: 28 starts...
+2026-06-04 14:01:49,656 distillation.py[line:60] INFO student_model ACC: 0.8515
+2026-06-04 14:01:49,657 distillation.py[line:61] INFO student_model ASR: 0.5569
+2026-06-04 14:01:49,657 distillation.py[line:39] INFO Epoch: 29 starts...
+2026-06-04 14:02:15,897 distillation.py[line:60] INFO student_model ACC: 0.8458
+2026-06-04 14:02:15,897 distillation.py[line:61] INFO student_model ASR: 0.4853
+2026-06-04 14:02:15,897 distillation.py[line:39] INFO Epoch: 30 starts...
+2026-06-04 14:02:42,104 distillation.py[line:60] INFO student_model ACC: 0.8467
+2026-06-04 14:02:42,104 distillation.py[line:61] INFO student_model ASR: 0.5229
+2026-06-04 14:02:42,104 distillation.py[line:39] INFO Epoch: 31 starts...
+2026-06-04 14:03:08,091 distillation.py[line:60] INFO student_model ACC: 0.8532
+2026-06-04 14:03:08,092 distillation.py[line:61] INFO student_model ASR: 0.5560
+2026-06-04 14:03:08,092 distillation.py[line:39] INFO Epoch: 32 starts...
+2026-06-04 14:03:34,190 distillation.py[line:60] INFO student_model ACC: 0.8585
+2026-06-04 14:03:34,191 distillation.py[line:61] INFO student_model ASR: 0.5726
+2026-06-04 14:03:34,191 distillation.py[line:39] INFO Epoch: 33 starts...
+2026-06-04 14:04:00,325 distillation.py[line:60] INFO student_model ACC: 0.8601
+2026-06-04 14:04:00,326 distillation.py[line:61] INFO student_model ASR: 0.4222
+2026-06-04 14:04:00,326 distillation.py[line:39] INFO Epoch: 34 starts...
+2026-06-04 14:04:26,487 distillation.py[line:60] INFO student_model ACC: 0.8615
+2026-06-04 14:04:26,487 distillation.py[line:61] INFO student_model ASR: 0.5044
+2026-06-04 14:04:26,487 distillation.py[line:39] INFO Epoch: 35 starts...
+2026-06-04 14:04:52,629 distillation.py[line:60] INFO student_model ACC: 0.8582
+2026-06-04 14:04:52,629 distillation.py[line:61] INFO student_model ASR: 0.5471
+2026-06-04 14:04:52,629 distillation.py[line:39] INFO Epoch: 36 starts...
+2026-06-04 14:05:18,792 distillation.py[line:60] INFO student_model ACC: 0.8553
+2026-06-04 14:05:18,792 distillation.py[line:61] INFO student_model ASR: 0.4567
+2026-06-04 14:05:18,792 distillation.py[line:39] INFO Epoch: 37 starts...
+2026-06-04 14:05:44,822 distillation.py[line:60] INFO student_model ACC: 0.8606
+2026-06-04 14:05:44,822 distillation.py[line:61] INFO student_model ASR: 0.4769
+2026-06-04 14:05:44,822 distillation.py[line:39] INFO Epoch: 38 starts...
+2026-06-04 14:06:10,869 distillation.py[line:60] INFO student_model ACC: 0.8590
+2026-06-04 14:06:10,869 distillation.py[line:61] INFO student_model ASR: 0.4392
+2026-06-04 14:06:10,869 distillation.py[line:39] INFO Epoch: 39 starts...
+2026-06-04 14:06:37,027 distillation.py[line:60] INFO student_model ACC: 0.8546
+2026-06-04 14:06:37,028 distillation.py[line:61] INFO student_model ASR: 0.5169
+2026-06-04 14:06:37,028 distillation.py[line:39] INFO Epoch: 40 starts...
+2026-06-04 14:07:03,063 distillation.py[line:60] INFO student_model ACC: 0.8565
+2026-06-04 14:07:03,063 distillation.py[line:61] INFO student_model ASR: 0.3746
+
+############ DONE. Read the LAST lines of each stage's log: ############
+  teacher ACC  -> should be high (~85%+)         (teacher still works)
+  teacher ASR  -> should be LOW  (~<10%)         (teacher looks clean = stealth)
+  student ASR  -> should be ABOVE-CHANCE/HIGH    (backdoor woke up = ATTACK WORKED)
+Logs + checkpoints are under: /workspace/SCAR/SCAR/{pretrain,attack,distillation}/

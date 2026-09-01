@@ -23,7 +23,10 @@ Usage:
 import os
 import sys
 import time
+import random
 import argparse
+
+import numpy as np
 
 import torch
 import torch.nn as nn
@@ -86,7 +89,19 @@ def main():
     p.add_argument("--lr", type=float, default=1e-3)
     p.add_argument("--device", default="cpu")
     p.add_argument("--out", default=None, help="checkpoint path (default: checkpoints/clean_teacher_<model>.pth)")
+    p.add_argument("--seed", type=int, default=0,
+                   help="seeds Python, NumPy and torch, including model initialisation")
     args = p.parse_args()
+
+    # Seed everything that affects the trained weights, not only the data order. An earlier
+    # version seeded the DataLoader generator alone, which left model initialisation free and
+    # meant two runs of the same command did not produce the same teacher. Note that this makes
+    # a run repeatable going forward; it cannot make an already-completed run reproducible, and
+    # the teachers behind the reported results were trained before this was added.
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    torch.cuda.manual_seed_all(args.seed)
 
     device = torch.device(args.device)
     os.makedirs(CKP_DIR, exist_ok=True)
@@ -95,7 +110,7 @@ def main():
     print("=== Training a CLEAN teacher (no trigger, no poison, no hijack) ===")
     print(f"  model={args.model}  n_train={args.n_train or 'full'}  epochs={args.epochs}  device={device}")
 
-    trainloader, testloader = get_loaders(args.n_train, args.n_test, args.batch_size)
+    trainloader, testloader = get_loaders(args.n_train, args.n_test, args.batch_size, seed=args.seed)
     model = nets.get_network(args.dataset, args.model).to(device)
     model = train(model, trainloader, device, args.epochs, args.lr)
 

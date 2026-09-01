@@ -75,18 +75,28 @@ CIFAR-10 downloads itself on first use, into `runtime_attack/data/`.
 python runtime_attack/train_teacher.py --model resnet50 --n_train 0 --epochs 30 --device cuda
 
 # detection half: AUC and TPR at a 5% false-alarm rate, per attack strength
-python runtime_attack/eval_detector.py --model resnet50 --n_test 0 --window 200 --device cuda
+python runtime_attack/eval_detector.py --model resnet50 --n_eval 0 --window 200 --device cuda
 
 # the rule fixed in advance, against the after-the-fact best choice
 python runtime_attack/eval_combined.py --model resnet50 --device cuda
 
+# the window sweep behind Sections 5.6 and 5.7 (no GPU needed)
+python runtime_attack/eval_prespecified.py --model resnet50 --device cpu
+
 # attack half: one student distilled per attack strength
-python runtime_attack/sweep_asr.py --model resnet50 --student mobilenetv2 \
+python runtime_attack/sweep_asr.py --teacher resnet50 --student mobilenetv2 \
     --n_train 0 --epochs 40 --device cuda
 
 # one compromised teacher against several students, both directions
-python runtime_attack/distributed.py --mode both --device cuda
+python runtime_attack/distributed.py --mode both --teacher resnet50 \
+    --archs mobilenetv2,shufflenetv2,resnet18,efficientvit --rule soft \
+    --poison_rate 0.1 --alpha 1.0 --alpha_def 0.25 --epochs 25 \
+    --n_train 0 --n_test 0 --device cuda
 ```
+
+The teacher argument is `--model` for `train_teacher.py` and `eval_detector.py`, and `--teacher`
+for `sweep_asr.py` and `distributed.py`, which take a student as well. `distributed.py` defaults
+to a small prototype configuration, so the full-scale flags above matter.
 
 `run_runpod.sh` runs the whole sequence and writes a summary. On an RTX 5080 it takes about
 100 minutes.

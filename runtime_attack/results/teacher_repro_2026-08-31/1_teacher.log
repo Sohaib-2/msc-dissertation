@@ -1,0 +1,38 @@
+/usr/local/lib/python3.12/dist-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+=== Training a CLEAN teacher (no trigger, no poison, no hijack) ===
+  model=resnet50  n_train=full  epochs=30  device=cuda
+  epoch 1/30  loss=1.5614  (37s)
+  epoch 2/30  loss=1.0338  (37s)
+  epoch 3/30  loss=0.7935  (37s)
+  epoch 4/30  loss=0.6429  (37s)
+  epoch 5/30  loss=0.5212  (37s)
+  epoch 6/30  loss=0.4282  (37s)
+  epoch 7/30  loss=0.3477  (37s)
+  epoch 8/30  loss=0.2782  (37s)
+  epoch 9/30  loss=0.2161  (37s)
+  epoch 10/30  loss=0.1666  (37s)
+  epoch 11/30  loss=0.1102  (37s)
+  epoch 12/30  loss=0.1080  (37s)
+  epoch 13/30  loss=0.0995  (37s)
+  epoch 14/30  loss=0.0400  (37s)
+  epoch 15/30  loss=0.0268  (37s)
+  epoch 16/30  loss=0.0261  (37s)
+  epoch 17/30  loss=0.0226  (37s)
+  epoch 18/30  loss=0.0112  (37s)
+  epoch 19/30  loss=0.0100  (37s)
+  epoch 20/30  loss=0.0066  (37s)
+  epoch 21/30  loss=0.0024  (37s)
+  epoch 22/30  loss=0.0027  (37s)
+  epoch 23/30  loss=0.0011  (37s)
+  epoch 24/30  loss=0.0004  (37s)
+  epoch 25/30  loss=0.0002  (37s)
+  epoch 26/30  loss=0.0001  (37s)
+  epoch 27/30  loss=0.0001  (37s)
+  epoch 28/30  loss=0.0001  (37s)
+  epoch 29/30  loss=0.0001  (37s)
+  epoch 30/30  loss=0.0001  (38s)
+  clean teacher ACC = 0.8649
+  saved -> checkpoints/clean_teacher_resnet50.pth
+
+Next: python calibrate_and_eval.py  (builds the detector's clean baseline)

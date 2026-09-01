@@ -17,8 +17,11 @@ __pycache__/
 venv/
 env/
 
-# logs
+# logs from local runs; the console logs of the reported runs are committed
+# deliberately under runtime_attack/results/ and scar_repro/results/
 *.log
+!runtime_attack/results/**/*.log
+!scar_repro/results/**/*.log
 
 # editors and OS
 .vscode/

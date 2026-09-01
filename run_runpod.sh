@@ -54,6 +54,11 @@ CKP="checkpoints/clean_teacher_${TEACHER_ARCH}.pth"
 SUMMARY="$OUT/SUMMARY.txt"
 
 echo "############ FULL-SCALE EVALUATION RUN ############" | tee "$SUMMARY"
+python - <<'PYVER' 2>/dev/null | tee -a "$SUMMARY"
+import torch, platform
+print(f"  python={platform.python_version()}  torch={torch.__version__}  "
+      f"cuda={torch.version.cuda}  device={torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'cpu'}")
+PYVER
 echo "  teacher=$TEACHER_ARCH  student=$STUDENT_ARCH  device=$DEV" | tee -a "$SUMMARY"
 echo "  teacher_ep=$TEACHER_EPOCHS  distill_ep=$DISTILL_EPOCHS  dist_ep=$DIST_EPOCHS" | tee -a "$SUMMARY"
 echo "  alphas=$ALPHAS  poison_rate=0.1  target=0" | tee -a "$SUMMARY"

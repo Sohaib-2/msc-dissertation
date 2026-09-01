@@ -110,13 +110,24 @@ python smoke_test.py
 python train_teacher.py --model resnet50 --n_train 0 --epochs 30 --device cuda
 
 # detection half (no training)
-python eval_detector.py --model resnet50 --n_test 0 --window 200 --device cuda
+python eval_detector.py --model resnet50 --n_eval 0 --window 200 --device cuda
+
+# the window sweep, reporting the pre-specified signal beside the combined rule
+python eval_prespecified.py --model resnet50 --device cuda
 
 # attack half (one distillation per alpha)
-python sweep_asr.py --model resnet50 --student mobilenetv2 --n_train 0 --epochs 40 --device cuda
+python sweep_asr.py --teacher resnet50 --student mobilenetv2 --n_train 0 --epochs 40 --device cuda
+
+# one teacher, several students, both directions
+python distributed.py --mode both --teacher resnet50 --archs mobilenetv2,shufflenetv2,resnet18,efficientvit \
+    --rule soft --poison_rate 0.1 --alpha 1.0 --alpha_def 0.25 --epochs 25 \
+    --n_train 0 --n_test 0 --device cuda
 ```
 
-`--n_train 0` and `--n_test 0` mean the full split rather than a subset. The scripts write both
+Note that the teacher argument is `--model` for `train_teacher.py` and `eval_detector.py` but
+`--teacher` for `sweep_asr.py` and `distributed.py`, which take a student as well. `--n_train 0`,
+`--n_test 0` and `--n_eval 0` all mean the full split rather than a subset. `run_runpod.sh` runs
+the whole sequence with these settings, so it is the safer route if you only want the results. The scripts write both
 a JSON and a Markdown table into `results/` after every alpha, so a long run can be inspected or
 stopped part-way.
 

@@ -1,0 +1,14 @@
+/usr/local/lib/python3.12/dist-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+=== Teacher-side runtime detector — evaluation ===
+  teacher=/workspace/msc/My_Work/05_Implementation/runtime_attack/checkpoints/clean_teacher_resnet50.pth  rule=soft  poison_rate=0.1  window=200
+  calibration images=5000  evaluation images=5000
+  calibrated: mean entropy=0.070  mean confidence=0.972
+  20/200 queries per attacked window are hijacked
+  alpha=0.0   | windowed AUC=0.502 (max_class_excess) TPR@5%FPR=0.040 | per-query AUC=0.500
+  alpha=0.25  | windowed AUC=0.603 (mean_prob_kl) TPR@5%FPR=0.113 | per-query AUC=0.135
+  alpha=0.5   | windowed AUC=0.994 (max_class_excess) TPR@5%FPR=0.980 | per-query AUC=0.118
+  alpha=0.75  | windowed AUC=0.995 (max_class_excess) TPR@5%FPR=0.987 | per-query AUC=0.143
+  alpha=1.0   | windowed AUC=0.994 (max_class_excess) TPR@5%FPR=0.980 | per-query AUC=0.995
+
+Saved -> results/detector_eval_soft_pr0.1_w200.md (+ .json)

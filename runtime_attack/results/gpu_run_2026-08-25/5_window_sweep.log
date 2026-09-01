@@ -1,0 +1,25 @@
+########## WINDOW=100 ##########
+  alpha=0.0   | windowed AUC=0.504 (hist_kl) TPR@5%FPR=0.047 | per-query AUC=0.500
+  alpha=0.25  | windowed AUC=0.549 (mean_prob_kl) TPR@5%FPR=0.077 | per-query AUC=0.126
+  alpha=0.5   | windowed AUC=0.931 (max_class_excess) TPR@5%FPR=0.640 | per-query AUC=0.123
+  alpha=0.75  | windowed AUC=0.937 (max_class_excess) TPR@5%FPR=0.657 | per-query AUC=0.153
+  alpha=1.0   | windowed AUC=0.954 (max_class_excess) TPR@5%FPR=0.780 | per-query AUC=0.997
+########## WINDOW=500 ##########
+  alpha=0.0   | windowed AUC=0.502 (hist_kl) TPR@5%FPR=0.050 | per-query AUC=0.499
+  alpha=0.25  | windowed AUC=0.737 (mean_prob_kl) TPR@5%FPR=0.263 | per-query AUC=0.131
+  alpha=0.5   | windowed AUC=1.000 (max_class_excess) TPR@5%FPR=1.000 | per-query AUC=0.114
+  alpha=0.75  | windowed AUC=1.000 (max_class_excess) TPR@5%FPR=1.000 | per-query AUC=0.142
+  alpha=1.0   | windowed AUC=1.000 (max_class_excess) TPR@5%FPR=1.000 | per-query AUC=0.996
+########## WINDOW=1000 ##########
+  alpha=0.0   | windowed AUC=0.503 (hist_kl) TPR@5%FPR=0.050 | per-query AUC=0.500
+  alpha=0.25  | windowed AUC=0.884 (mean_prob_kl) TPR@5%FPR=0.597 | per-query AUC=0.133
+  alpha=0.5   | windowed AUC=1.000 (hist_kl) TPR@5%FPR=1.000 | per-query AUC=0.117
+  alpha=0.75  | windowed AUC=1.000 (hist_kl) TPR@5%FPR=1.000 | per-query AUC=0.145
+  alpha=1.0   | windowed AUC=1.000 (hist_kl) TPR@5%FPR=1.000 | per-query AUC=0.996
+########## WINDOW=2000 ##########
+  alpha=0.0   | windowed AUC=0.505 (mean_prob_kl) TPR@5%FPR=0.050 | per-query AUC=0.500
+  alpha=0.25  | windowed AUC=0.979 (mean_prob_kl) TPR@5%FPR=0.903 | per-query AUC=0.133
+  alpha=0.5   | windowed AUC=1.000 (hist_kl) TPR@5%FPR=1.000 | per-query AUC=0.118
+  alpha=0.75  | windowed AUC=1.000 (hist_kl) TPR@5%FPR=1.000 | per-query AUC=0.143
+  alpha=1.0   | windowed AUC=1.000 (hist_kl) TPR@5%FPR=1.000 | per-query AUC=0.996
+WIN_SWEEP_DONE

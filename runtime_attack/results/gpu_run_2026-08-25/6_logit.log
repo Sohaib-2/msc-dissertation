@@ -1,0 +1,15 @@
+########## LOGIT ASR SWEEP ##########
+--- alpha=3.0 : ACC=0.8408  ASR=0.0181  (702s) ---
+--- alpha=5.0 : ACC=0.8393  ASR=0.0179  (701s) ---
+--- alpha=8.0 : ACC=0.8344  ASR=0.0256  (700s) ---
+--- alpha=10.0 : ACC=0.8410  ASR=0.0367  (700s) ---
+--- alpha=15.0 : ACC=0.8472  ASR=0.0791  (698s) ---
+########## LOGIT DETECTOR ##########
+  alpha=3.0   | windowed AUC=0.505 (mean_prob_kl) TPR@5%FPR=0.060 | per-query AUC=0.502
+  alpha=5.0   | windowed AUC=0.512 (hist_kl) TPR@5%FPR=0.050 | per-query AUC=0.509
+  alpha=8.0   | windowed AUC=0.517 (max_class_excess) TPR@5%FPR=0.067 | per-query AUC=0.503
+  alpha=10.0  | windowed AUC=0.522 (mean_prob_kl) TPR@5%FPR=0.063 | per-query AUC=0.505
+  alpha=15.0  | windowed AUC=0.554 (max_class_excess) TPR@5%FPR=0.063 | per-query AUC=0.507
+LOGIT_DONE
+
+=== logit ASR+detector summary pulled from json/md ===
